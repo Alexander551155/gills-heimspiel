@@ -32,7 +32,7 @@
       }
       html,body{background: rgb(var(--bg)); color: rgb(var(--ink));}
       .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.6);} /* improved in dark via utility */
-      .reveal{opacity:1;transform:none;transition:all .6s ease;} .reveal.hide{opacity:0;transform:translateY(18px);}
+      .reveal{opacity:1;transform:none;transition:all .6s ease;} /* Always visible by default */
       .reveal.show{opacity:1;transform:translateY(0);}
       .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)}
       .btn-primary{background:linear-gradient(135deg,rgb(var(--brand)) 0%, rgb(var(--brand-2)) 100%);color:white;border:none}
@@ -273,10 +273,12 @@
 
       // Reveal on scroll
       if ('IntersectionObserver' in window){
-        const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
-        $$('.reveal').forEach(el=>{ el.classList.add('hide'); io.observe(el); });
+        const io = new IntersectionObserver((ents)=>{
+          for(const e of ents){ if(e.isIntersecting) e.target.classList.add('show'); }
+        },{threshold:.1});
+        $$('.reveal').forEach(el=> io.observe(el));
       } else {
-        // Fallback: sofort anzeigen (ältere Handys)
+        // Fallback: show immediately
         $$('.reveal').forEach(el=> el.classList.add('show'));
       }
 
