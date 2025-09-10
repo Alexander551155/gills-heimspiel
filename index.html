@@ -32,7 +32,7 @@
       }
       html,body{background: rgb(var(--bg)); color: rgb(var(--ink));}
       .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.6);} /* improved in dark via utility */
-      .reveal{opacity:0;transform:translateY(18px);transition:all .6s ease;}
+      .reveal{opacity:1;transform:none;transition:all .6s ease;} .reveal.hide{opacity:0;transform:translateY(18px);}
       .reveal.show{opacity:1;transform:translateY(0);}
       .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)}
       .btn-primary{background:linear-gradient(135deg,rgb(var(--brand)) 0%, rgb(var(--brand-2)) 100%);color:white;border:none}
@@ -272,8 +272,13 @@
       navToggle?.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
 
       // Reveal on scroll
-      const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
-      $$('.reveal').forEach(el=>io.observe(el));
+      if ('IntersectionObserver' in window){
+        const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
+        $$('.reveal').forEach(el=>{ el.classList.add('hide'); io.observe(el); });
+      } else {
+        // Fallback: sofort anzeigen (ältere Handys)
+        $$('.reveal').forEach(el=> el.classList.add('show'));
+      }
 
       // Open now indicator (simple hours model)
       const hours = { open: 11.5, close: 22.0 }; // 11:30 - 22:00
@@ -351,46 +356,53 @@
       function btnClass(id){ const base='px-3 py-2 rounded-2xl border text-sm'; const activeCls='bg-slate-900 text-white dark:bg-white dark:text-slate-900'; const normal='bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100/80'; return `${base} ${active===id?activeCls:normal}`; }
 
       function render(){
-        let q = (searchEl.value||'').toLowerCase();
-        let data = items.filter(i=>{
-          if(showFav && !favs.has(i.id)) return false;
-          if(active==='alle') return true;
-          if(['vegan','veg','spicy'].includes(active)) return !!i[active];
-          return i.cat===active;
-        }).filter(i=> i.title.toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q));
+        try{
+          let q = (searchEl?.value||'').toLowerCase();
+          let data = items.filter(i=>{
+            if(showFav && !favs.has(i.id)) return false;
+            if(active==='alle') return true;
+            if(['vegan','veg','spicy'].includes(active)) return !!i[active];
+            return i.cat===active;
+          }).filter(i=> i.title.toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q));
 
-        switch (sortEl.value){
-          case 'price-asc': data.sort((a,b)=>a.price-b.price); break;
-          case 'price-desc': data.sort((a,b)=>b.price-a.price); break;
-          case 'alpha': data.sort((a,b)=>a.title.localeCompare(b.title,'de')); break;
+          switch (sortEl?.value){
+            case 'price-asc': data.sort((a,b)=>a.price-b.price); break;
+            case 'price-desc': data.sort((a,b)=>b.price-a.price); break;
+            case 'alpha': data.sort((a,b)=> (a.title > b.title) - (a.title < b.title)); break;
+          }
+
+          listEl.innerHTML = '';
+          for(const i of data){
+            const card = document.createElement('article');
+            card.className = 'card p-5 flex flex-col';
+            const badges = [ i.vegan?'<span class="tag">vegan</span>':'', i.veg?'<span class="tag">vegetarisch</span>':'', i.spicy?'<span class="tag">🌶️ scharf</span>':'' ].filter(Boolean).join(' ');
+            const fav = favs.has(i.id) ? '❤️' : '🤍';
+            card.innerHTML = `
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <h4 class="font-semibold text-lg">${i.title}</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">${i.desc||''}</p>
+                  <div class="flex flex-wrap gap-2 mt-2">${badges}</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold whitespace-nowrap price">${i.price.toFixed(2).replace('.',',')}€</div>
+                  <button aria-label="Favorit" class="mt-2" data-id="${i.id}">${fav}</button>
+                </div>
+              </div>`;
+            listEl.appendChild(card);
+          }
+
+          // favorite buttons
+          $$('button[data-id]', listEl).forEach(b=> b.onclick = ()=>{ const id=Number(b.dataset.id); if(favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); render(); toast('Aktualisiert'); });
+        } catch (err){
+          console.error(err);
+          listEl.innerHTML = '<div class="text-center text-slate-500">Fehler beim Laden der Speisekarte. Bitte Seite neu laden.</div>';
         }
-
-        listEl.innerHTML = '';
-        for(const i of data){
-          const card = document.createElement('article');
-          card.className = 'card p-5 flex flex-col';
-          const badges = [ i.vegan?'<span class="tag">vegan</span>':'', i.veg?'<span class="tag">vegetarisch</span>':'', i.spicy?'<span class="tag">🌶️ scharf</span>':'' ].filter(Boolean).join(' ');
-          const fav = favs.has(i.id) ? '❤️' : '🤍';
-          card.innerHTML = `
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <h4 class="font-semibold text-lg">${i.title}</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">${i.desc||''}</p>
-                <div class="flex flex-wrap gap-2 mt-2">${badges}</div>
-              </div>
-              <div class="text-right">
-                <div class="font-semibold whitespace-nowrap price">${i.price.toFixed(2).replace('.',',')}€</div>
-                <button aria-label="Favorit" class="mt-2" data-id="${i.id}">${fav}</button>
-              </div>
-            </div>`;
-          listEl.appendChild(card);
-        }
-
-        // favorite buttons
-        $$('button[data-id]', listEl).forEach(b=> b.onclick = ()=>{ const id=Number(b.dataset.id); if(favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); render(); toast('Aktualisiert'); });
       }
 
-      searchEl.addEventListener('input', render);
+      searchEl?.addEventListener('input', render);
+      sortEl?.addEventListener('change', render);
+      favToggle?.addEventListener('click', ()=>{ showFav=!showFav; favToggle.classList.toggle('bg-slate-900'); favToggle.classList.toggle('text-white'); render(); });('input', render);
       sortEl.addEventListener('change', render);
       favToggle.addEventListener('click', ()=>{ showFav=!showFav; favToggle.classList.toggle('bg-slate-900'); favToggle.classList.toggle('text-white'); render(); });
 
