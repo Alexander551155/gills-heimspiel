@@ -88,22 +88,30 @@
       </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero MIT HINTERGRUNDBILD -->
     <section id="home" class="relative">
+      <!-- Hintergrundbild -->
+      <div class="absolute inset-0 -z-10 bg-cover bg-center" style="background-image:url('Bild1.jpg')"></div>
+      <!-- Dunkles Overlay für Lesbarkeit -->
+      <div class="absolute inset-0 -z-10 bg-black/40 dark:bg-black/50"></div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
         <div class="w-full lg:w-1/2 reveal">
-          <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/60 dark:bg-slate-900/60">⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan</div>
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Indische Spezialitäten in Ober-Olm</h1>
-          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Vegetarisch & nicht-vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
+          <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
+            ⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white">Indische Spezialitäten in Ober-Olm</h1>
+          <p class="mt-4 text-lg text-white/90">Vegetarisch & nicht-vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="#menu" class="btn btn-primary">Speisekarte ansehen</a>
             <a href="#contact" class="btn btn-primary">Jetzt reservieren</a>
           </div>
-          <div id="openNow" class="mt-4 text-sm text-slate-600 dark:text-slate-400"></div>
+          <div id="openNow" class="mt-4 text-sm text-white/80"></div>
         </div>
+
+        <!-- Rechte Spalte: Logo-Card bleibt (kannst du bei Bedarf entfernen) -->
         <div class="w-full lg:w-1/2 reveal">
-          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center">
-            <!-- LEERE STELLE -> Logo -->
+          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center bg-white/70 dark:bg-slate-900/70 backdrop-blur">
             <img src="logo_1.jpg" alt="Logo" class="object-contain h-full w-full p-6"/>
           </div>
         </div>
@@ -151,40 +159,20 @@
           <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery">
             <figure class="card overflow-hidden aspect-[4/3]">
               <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.t3oB8PYFjY0y2VKNb3OWUQHaHa?pid=Api" alt="Indische Thali mit Currys, Dips und Reis" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Koch Piraten (öffentlich zugänglich)</figcaption>
             </figure>
             <figure class="card overflow-hidden aspect-[4/3]">
               <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.WdJ4XNILhDWB_WbH-sy6cQHaE7?pid=Api" alt="Indische Speisen – Biryani, Currys, Naan" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Öffentlicher Artikel zur indischen Küche</figcaption>
             </figure>
             <figure class="card overflow-hidden aspect-[4/3]">
               <img loading="lazy" src="https://tse1.mm.bing.net/th/id/OIP.Po5VyOu3FiB2AH0fAy4v_AHaDe?pid=Api" alt="Beliebte Nationalgerichte Indiens" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Club Mahindra – Nationalgerichte</figcaption>
             </figure>
             <figure class="card overflow-hidden aspect-[4/3]">
               <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.gB_-iQwJifTuOqwVllCiqgHaG6?pid=Api" alt="Masala Dosa mit Chutney und Sambar" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Südindisches Frühstück – Dosa</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Quellen (öffentliche Links) 
-    <section class="border-t bg-slate-50/60 dark:bg-slate-900/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h3 class="text-2xl font-semibold mb-4">Quellen & weiterführende Infos</h3>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><a class="underline" target="_blank" href="https://www.urlaubstracker.de/nationalgerichte-indien/">Top 20 Nationalgerichte Indiens – Urlaubstracker</a></li>
-          <li><a class="underline" target="_blank" href="https://www.indien-discover.de/ueber-indien/landesinformationen/indische-kueche-essen-speisen-was-isst-man-in-indien.html">Typische indische Gerichte – Indien Discover</a></li>
-          <li><a class="underline" target="_blank" href="https://www.rewe.de/ernaehrung/indische-kueche/">Regionale Vielfalt – REWE Magazin</a></li>
-          <li><a class="underline" target="_blank" href="https://indiasomeday.com/de/indische-gerichte-die-kulinarischen-verfuehrungen-suedindiens/">Südindische Spezialitäten – India Someday</a></li>
-          <li><a class="underline" target="_blank" href="https://expert.tourlane.de/asien/indien/nationalgerichte/">Beliebte Klassiker – Tourlane</a></li>
-          <li><a class="underline" target="_blank" href="https://www.teamfit.eu/de/indische-gerichte-die-besten-rezepte-gewurze-spezialitaten/">Rezepte – Teamfit</a></li>
-          <li><a class="underline" target="_blank" href="https://www.lecker.de/indische-rezepte">Indische Rezepte – LECKER</a></li>
-        </ul>
-      </div>
-    </section> -->
 
     <!-- Über uns -->
     <section id="about" class="border-t">
