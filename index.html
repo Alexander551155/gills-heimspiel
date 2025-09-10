@@ -32,13 +32,13 @@
       }
       html,body{background: rgb(var(--bg)); color: rgb(var(--ink));}
       .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.6);} /* improved in dark via utility */
-      .reveal{opacity:1;transform:none;transition:all .6s ease;} /* Always visible by default */
+      .reveal{opacity:1;transform:none;transition:all .6s ease;} .reveal.hide{opacity:0;transform:translateY(18px);}
       .reveal.show{opacity:1;transform:translateY(0);}
-      .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)} .dark .btn{border-color:rgba(255,255,255,.12)}
+      .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)}
       .btn-primary{background:linear-gradient(135deg,rgb(var(--brand)) 0%, rgb(var(--brand-2)) 100%);color:white;border:none}
-      .btn-ghost{background:rgba(0,0,0,.03)} .dark .btn-ghost{background:rgba(255,255,255,.08); color:rgb(226,232,240); border-color:rgba(255,255,255,.12)}
+      .btn-ghost{background:rgba(0,0,0,.03)}
       .card{background: rgb(var(--card));border:1px solid rgba(0,0,0,.06);border-radius:1.25rem;box-shadow:0 6px 24px rgba(2,6,23,.06)}
-      .tag{font-size:.7rem;padding:.2rem .5rem;border-radius:.6rem;border:1px solid rgba(0,0,0,.08)} .dark .tag{border-color:rgba(255,255,255,.18); color:rgb(var(--muted));}
+      .tag{font-size:.7rem;padding:.2rem .5rem;border-radius:.6rem;border:1px solid rgba(0,0,0,.08)}
       .price{font-variant-numeric: tabular-nums;}
     </style>
   </head>
@@ -273,12 +273,10 @@
 
       // Reveal on scroll
       if ('IntersectionObserver' in window){
-        const io = new IntersectionObserver((ents)=>{
-          for(const e of ents){ if(e.isIntersecting) e.target.classList.add('show'); }
-        },{threshold:.1});
-        $$('.reveal').forEach(el=> io.observe(el));
+        const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
+        $$('.reveal').forEach(el=>{ el.classList.add('hide'); io.observe(el); });
       } else {
-        // Fallback: show immediately
+        // Fallback: sofort anzeigen (ältere Handys)
         $$('.reveal').forEach(el=> el.classList.add('show'));
       }
 
@@ -355,12 +353,7 @@
         filtersEl.appendChild(mkBtn('vegan','Vegan')); filtersEl.appendChild(mkBtn('veg','Vegetarisch'));
         filtersEl.appendChild(mkBtn('spicy','Scharf'));
       }
-      function btnClass(id){
-        const base = 'px-3 py-2 rounded-2xl text-sm border transition';
-        const activeCls = 'bg-white text-slate-900 border-slate-300 dark:bg-white dark:text-slate-900 dark:border-white/20 shadow';
-        const normal = 'bg-white/90 text-slate-800 border-slate-200 hover:bg-slate-100/90 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-700';
-        return `${base} ${active===id?activeCls:normal}`;
-      } ${active===id?activeCls:normal}`; }
+      function btnClass(id){ const base='px-3 py-2 rounded-2xl border text-sm'; const activeCls='bg-slate-900 text-white dark:bg-white dark:text-slate-900'; const normal='bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100/80'; return `${base} ${active===id?activeCls:normal}`; }
 
       function render(){
         try{
