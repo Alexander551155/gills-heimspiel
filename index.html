@@ -21,7 +21,7 @@
         --brand: 8 47 73;           /* sky-950ish */
         --brand-2: 236 72 153;      /* pink-500 */
         --card: 248 250 252;        /* slate-50 */
-        --gold: #d4af37;            /* Gold für Buttons */
+        --gold: #d4af37;            /* Gold für Buttons / Rahmen */
       }
       .dark:root{
         --bg: 2 6 23;              /* midnight */
@@ -48,7 +48,7 @@
     </style>
   </head>
   <body class="min-h-screen relative dark:bg-slate-950 dark:text-slate-100">
-    <!-- Top Gradient Background -->
+    <!-- Top Gradient Background (hinter alles) -->
     <div aria-hidden class="pointer-events-none fixed inset-0 -z-20">
       <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-[900px] rounded-full blur-3xl opacity-30 dark:opacity-20" style="background: radial-gradient(closest-side, rgba(8,47,73,.6), transparent 70%), radial-gradient(closest-side, rgba(236,72,153,.35), transparent 75%)"></div>
     </div>
@@ -89,13 +89,14 @@
     </header>
 
     <!-- Hero MIT HINTERGRUNDBILD -->
-    <section id="home" class="relative">
+    <section id="home" class="relative min-h-[60vh]">
       <!-- Hintergrundbild -->
       <div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image:url('Bild1.jpeg')"></div>
       <!-- Dunkles Overlay für Lesbarkeit -->
       <div class="absolute inset-0 z-0 bg-black/40 dark:bg-black/50"></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
+        <!-- Linke Spalte: Text -->
         <div class="w-full lg:w-1/2 reveal">
           <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
             ⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan
@@ -109,10 +110,13 @@
           <div id="openNow" class="mt-4 text-sm text-white/80"></div>
         </div>
 
-        <!-- Rechte Spalte: Logo-Card bleibt (kannst du bei Bedarf entfernen) -->
-        <div class="w-full lg:w-1/2 reveal">
-          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center bg-white/70 dark:bg-slate-900/70 backdrop-blur">
-            <img src="logo_1.jpg" alt="Logo" class="object-contain h-full w-full p-6"/>
+        <!-- Rechte Spalte: RUNDES LOGO -->
+        <div class="w-full lg:w-1/2 reveal flex items-center justify-center">
+          <div class="aspect-square w-56 sm:w-64 md:w-72 rounded-full border-4" style="border-color:var(--gold);">
+            <div class="w-full h-full rounded-full overflow-hidden bg-white/85 dark:bg-slate-900/85 flex items-center justify-center">
+              <img src="logo_1.jpg" alt="Gill’s Heimspiel – Logo"
+                   class="w-full h-full object-contain p-6" loading="lazy"/>
+            </div>
           </div>
         </div>
       </div>
@@ -188,7 +192,16 @@
               <span class="tag">Feiern & Catering</span>
             </div>
           </div>
-          <figure class="aspect-[4/3] rounded-3xl card overflow-hidden bg-white/70 dark:bg-slate-900/60 grid place-items-center p-4">   <img src="logo_1.jpg" alt="Gill’s Heimspiel – Logo"        class="w-full h-full object-contain" loading="lazy" /> </figure>
+
+          <!-- RUNDES LOGO anstelle des Platzhalters -->
+          <div class="w-full flex items-center justify-center">
+            <div class="aspect-square w-64 md:w-72 rounded-full border-4" style="border-color:var(--gold);">
+              <div class="w-full h-full rounded-full overflow-hidden bg-white/85 dark:bg-slate-900/85 flex items-center justify-center">
+                <img src="logo_1.jpg" alt="Gill’s Heimspiel – Logo"
+                     class="w-full h-full object-contain p-6" loading="lazy"/>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
