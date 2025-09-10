@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gill’s Heimspiel – Indisches Restaurant Ober‑Olm</title>
-    <meta name="description" content="Indische Spezialitäten in Ober‑Olm – Gill’s Heimspiel. Reservieren, Speisekarte ansehen und genießen." />
+    <title>Gill’s Heimspiel – Indisches Restaurant Ober-Olm</title>
+    <meta name="description" content="Indische Spezialitäten in Ober-Olm – Gill’s Heimspiel. Reservieren, Speisekarte ansehen und genießen." />
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -93,8 +93,8 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
         <div class="w-full lg:w-1/2 reveal">
           <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/60 dark:bg-slate-900/60">⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan</div>
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Indische Spezialitäten in Ober‑Olm</h1>
-          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Vegetarisch & nicht‑vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Indische Spezialitäten in Ober-Olm</h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Vegetarisch & nicht-vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="#menu" class="btn btn-primary">Speisekarte ansehen</a>
             <a href="#contact" class="btn btn-primary">Jetzt reservieren</a>
@@ -102,8 +102,8 @@
           <div id="openNow" class="mt-4 text-sm text-slate-600 dark:text-slate-400"></div>
         </div>
         <div class="w-full lg:w-1/2 reveal">
-          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center text-slate-500">
-            <!-- LEERE STELLE -> Logo einsetzen (ohne andere Bereiche zu ändern) -->
+          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center">
+            <!-- LEERE STELLE -> Logo -->
             <img src="logo_1.jpg" alt="Logo" class="object-contain h-full w-full p-6"/>
           </div>
         </div>
@@ -147,26 +147,42 @@
     <section class="border-t">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="reveal">
-          <h3 class="text-2xl font-semibold">Galerie</h3>
-          <p class="text-slate-600 dark:text-slate-300">Fügen Sie eigene Fotos hinzu; Klick öffnet Lightbox.</p>
-          <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery">
-            <figure class="card overflow-hidden">
-              <img src="https://tse2.mm.bing.net/th/id/OIP.t3oB8PYFjY0y2VKNb3OWUQHaHa?pid=Api" alt="Indische Thali mit Currys, Dips und Reis" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Koch Piraten / öffentlich zugänglich</figcaption>
+          <h3 class="text-2xl font-semibold mb-4">Galerie</h3>
+          <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery">
+            <figure class="card overflow-hidden aspect-[4/3]">
+              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.t3oB8PYFjY0y2VKNb3OWUQHaHa?pid=Api" alt="Indische Thali mit Currys, Dips und Reis" class="w-full h-full object-cover"/>
+              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Koch Piraten (öffentlich zugänglich)</figcaption>
             </figure>
-            <figure class="card overflow-hidden">
-              <img src="https://tse2.mm.bing.net/th/id/OIP.WdJ4XNILhDWB_WbH-sy6cQHaE7?pid=Api" alt="Indische Speisen – Biryani, Currys, Naan" class="w-full h-full object-cover"/>
-              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Artikel über indische Küche (öffentliche Abbildung)</figcaption>
+            <figure class="card overflow-hidden aspect-[4/3]">
+              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.WdJ4XNILhDWB_WbH-sy6cQHaE7?pid=Api" alt="Indische Speisen – Biryani, Currys, Naan" class="w-full h-full object-cover"/>
+              <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Öffentlicher Artikel zur indischen Küche</figcaption>
             </figure>
-            <figure class="card overflow-hidden">
-              <img src="https://tse1.mm.bing.net/th/id/OIP.Po5VyOu3FiB2AH0fAy4v_AHaDe?pid=Api" alt="Beliebte Nationalgerichte Indiens" class="w-full h-full object-cover"/>
+            <figure class="card overflow-hidden aspect-[4/3]">
+              <img loading="lazy" src="https://tse1.mm.bing.net/th/id/OIP.Po5VyOu3FiB2AH0fAy4v_AHaDe?pid=Api" alt="Beliebte Nationalgerichte Indiens" class="w-full h-full object-cover"/>
               <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Club Mahindra – Nationalgerichte</figcaption>
             </figure>
-            <figure class="card overflow-hidden">
-              <img src="https://tse2.mm.bing.net/th/id/OIP.gB_-iQwJifTuOqwVllCiqgHaG6?pid=Api" alt="Masala Dosa mit Chutney und Sambar" class="w-full h-full object-cover"/>
+            <figure class="card overflow-hidden aspect-[4/3]">
+              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.gB_-iQwJifTuOqwVllCiqgHaG6?pid=Api" alt="Masala Dosa mit Chutney und Sambar" class="w-full h-full object-cover"/>
               <figcaption class="p-2 text-xs text-slate-600 dark:text-slate-300">Quelle: Südindisches Frühstück – Dosa</figcaption>
             </figure>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Quellen (öffentliche Links) -->
+    <section class="border-t bg-slate-50/60 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h3 class="text-2xl font-semibold mb-4">Quellen & weiterführende Infos</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+          <li><a class="underline" target="_blank" href="https://www.urlaubstracker.de/nationalgerichte-indien/">Top 20 Nationalgerichte Indiens – Urlaubstracker</a></li>
+          <li><a class="underline" target="_blank" href="https://www.indien-discover.de/ueber-indien/landesinformationen/indische-kueche-essen-speisen-was-isst-man-in-indien.html">Typische indische Gerichte – Indien Discover</a></li>
+          <li><a class="underline" target="_blank" href="https://www.rewe.de/ernaehrung/indische-kueche/">Regionale Vielfalt – REWE Magazin</a></li>
+          <li><a class="underline" target="_blank" href="https://indiasomeday.com/de/indische-gerichte-die-kulinarischen-verfuehrungen-suedindiens/">Südindische Spezialitäten – India Someday</a></li>
+          <li><a class="underline" target="_blank" href="https://expert.tourlane.de/asien/indien/nationalgerichte/">Beliebte Klassiker – Tourlane</a></li>
+          <li><a class="underline" target="_blank" href="https://www.teamfit.eu/de/indische-gerichte-die-besten-rezepte-gewurze-spezialitaten/">Rezepte – Teamfit</a></li>
+          <li><a class="underline" target="_blank" href="https://www.lecker.de/indische-rezepte">Indische Rezepte – LECKER</a></li>
+        </ul>
       </div>
     </section>
 
@@ -180,11 +196,11 @@
             <div class="mt-6 flex flex-wrap gap-2">
               <span class="tag">Familienfreundlich</span>
               <span class="tag">Vegetarisch & Vegan</span>
-              <span class="tag">Tandoor‑Ofen</span>
+              <span class="tag">Tandoor-Ofen</span>
               <span class="tag">Feiern & Catering</span>
             </div>
           </div>
-          <div class="aspect-[4/3] rounded-3xl card overflow-hidden flex items-center justify-center text-slate-500">Galerie‑Platzhalter</div>
+          <div class="aspect-[4/3] rounded-3xl card overflow-hidden flex items-center justify-center text-slate-500">Galerie-Platzhalter</div>
         </div>
       </div>
     </section>
@@ -193,7 +209,7 @@
     <section class="border-t bg-slate-50/60 dark:bg-slate-900/40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal">
         <h3 class="text-2xl font-semibold">FAQ</h3>
-        <details class="mt-4 card p-4"><summary class="font-medium cursor-pointer">Gibt es vegane Optionen?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Ja, viele – z. B. Dal, Baingan, vegane Currys. Achten Sie auf das Badge „vegan“.</p></details>
+        <details class="mt-4 card p-4"><summary class="font-medium cursor-pointer">Gibt es vegane Optionen?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Ja, viele – z. B. Dal, Baingan, vegane Currys. Achten Sie auf das Badge „vegan“.</p></details>
         <details class="mt-3 card p-4"><summary class="font-medium cursor-pointer">Liefert ihr auch?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Auf Anfrage im Umkreis – oder als Catering für Events.</p></details>
       </div>
     </section>
@@ -206,11 +222,18 @@
             <h2 class="text-3xl sm:text-4xl font-bold">Kontakt & Reservierung</h2>
             <ul class="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
               <li><strong>Telefon:</strong> <a class="underline" href="tel:+49">+49 …</a></li>
-              <li><strong>E‑Mail:</strong> <a class="underline" href="mailto:info@">info@…</a></li>
-              <li><strong>Adresse:</strong> …, 55270 Ober‑Olm</li>
+              <li><strong>E-Mail:</strong> <a class="underline" href="mailto:info@">info@…</a></li>
+              <li><strong>Adresse:</strong> Am Sportpl. 2, 55270 Ober-Olm</li>
               <li><strong>Öffnungszeiten:</strong> Mo–So 11:30–22:00</li>
             </ul>
-            <div class="mt-8 aspect-[4/3] rounded-3xl card grid place-items-center text-slate-500">Google‑Maps‑Embed hier einsetzen</div>
+            <!-- Google Maps Embed -->
+            <div class="mt-8 rounded-3xl overflow-hidden border">
+              <iframe
+                title="Gill’s Heimspiel – Lage"
+                src="https://www.google.com/maps?q=Am%20Sportpl.%202,%2055270%20Ober-Olm&output=embed"
+                width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
 
           <form id="contactForm" class="card p-6">
@@ -221,7 +244,7 @@
                 <input name="name" required type="text" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="Ihr Name" />
               </div>
               <div class="sm:col-span-1">
-                <label class="block text-sm mb-1">E‑Mail</label>
+                <label class="block text-sm mb-1">E-Mail</label>
                 <input name="email" required type="email" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="name@mail.de" />
               </div>
               <div class="sm:col-span-2">
@@ -233,7 +256,7 @@
               </div>
             </div>
             <button class="mt-4 btn btn-primary w-full" type="submit">Senden</button>
-            <p class="mt-2 text-xs text-slate-500">(Statisch. Für echten Versand z. B. Formspree/Netlify verwenden.)</p>
+            <p class="mt-2 text-xs text-slate-500">(Statisch. Für echten Versand z. B. Formspree/Netlify verwenden.)</p>
           </form>
         </div>
       </div>
@@ -338,9 +361,9 @@
         { id:10, cat:'tandoori', title:'Tandoori Lamm Tikka', spicy:true, desc:'Lammhüfte in Joghurt & Gewürzen', price:22.9 },
         { id:11, cat:'fisch', title:'Tandoori Jeengha', desc:'Riesengarnelen in südindischen Gewürzen', price:22.9 },
         { id:12, cat:'haehnchen', title:'Murgh Sahi Korma', desc:'Sahne, Cashew, Kokos, Mandeln', price:17.9 },
-        { id:13, cat:'haehnchen', title:'Tandoori Murgh Masala', desc:'Gegrilltes Hähnchen, Tomaten‑Sahne', price:19.9 },
-        { id:14, cat:'haehnchen', title:'Butter Chicken Tandoori', desc:'Sahnige Butter‑Tomate', price:18.9 },
-        { id:15, cat:'lamm', title:'Lamb Shahi Korma', desc:'Aromatische Sahne‑Currysoße', price:18.9 },
+        { id:13, cat:'haehnchen', title:'Tandoori Murgh Masala', desc:'Gegrilltes Hähnchen, Tomaten-Sahne', price:19.9 },
+        { id:14, cat:'haehnchen', title:'Butter Chicken Tandoori', desc:'Sahnige Butter-Tomate', price:18.9 },
+        { id:15, cat:'lamm', title:'Lamb Shahi Korma', desc:'Aromatische Sahne-Currysoße', price:18.9 },
         { id:16, cat:'lamm', title:'Tandoori Lamb Masala', desc:'Gegrillte Lammhüfte in Masala', price:20.9 },
         { id:17, cat:'lamm', title:'Karahi Gost', spicy:true, desc:'Ingwer, Knoblauch, Tomaten', price:19.9 },
         { id:18, cat:'fisch', title:'Machi Korma', desc:'Seelachsfilet, delikate Currysoße', price:19.9 },
@@ -350,8 +373,8 @@
         { id:22, cat:'veg', title:'Baingan Bhartha', vegan:true, desc:'Gegrillte Aubergine, Tomaten, Zwiebeln, Masala', price:16.9 },
         { id:23, cat:'veg', title:'Special Dal Makhni', veg:true, desc:'Schwarze Linsen, Butter & Sahne', price:16.9 },
         { id:24, cat:'veg', title:'Palak Paneer', veg:true, desc:'Spinat mit hausgemachtem Käse', price:17.5 },
-        { id:25, cat:'burger', title:'American Classic Beef‑Burger', desc:'Mit Pommes inklusive', price:14.9 },
-        { id:26, cat:'burger', title:'Indian Chicken Tikka‑Burger', desc:'Mit Tikka‑Sauce & Pommes', price:15.9 },
+        { id:25, cat:'burger', title:'American Classic Beef-Burger', desc:'Mit Pommes inklusive', price:14.9 },
+        { id:26, cat:'burger', title:'Indian Chicken Tikka-Burger', desc:'Mit Tikka-Sauce & Pommes', price:15.9 },
         { id:27, cat:'schnitzel', title:'Schnitzel Wiener Art', desc:'Mit Zitrone & Petersilie (inkl. Pommes)', price:14.9 },
         { id:28, cat:'salat', title:'Gemischter Salat (Haus)', vegan:true, desc:'Tomaten, Gurken, Paprika, Oliven …', price:10.9 },
         { id:29, cat:'salat', title:'Tandoori Chicken Salat', desc:'Chicken aus dem Tandoor, Gemüse', price:14.9 },
@@ -375,7 +398,14 @@
         filtersEl.appendChild(mkBtn('vegan','Vegan')); filtersEl.appendChild(mkBtn('veg','Vegetarisch'));
         filtersEl.appendChild(mkBtn('spicy','Scharf'));
       }
-      function btnClass(id){ const base='px-3 py-2 rounded-2xl border text-sm'; const activeCls='bg-slate-900 text-white dark:bg-white dark:text-slate-900'; const normal='bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100/80'; return `${base} ${active===id?activeCls:normal}`; }
+
+      // GOLD-Stil für Filter-Buttons (Light: Weiß/Gold, Dark: Schwarz/Gold)
+      function btnClass(id){
+        const base = 'px-3 py-2 rounded-2xl text-sm border transition';
+        const activeCls = 'bg-white text-[#111] border-[var(--gold)] text-[var(--gold)] dark:bg-black dark:text-[var(--gold)] dark:border-[var(--gold)] shadow';
+        const normal = 'bg-transparent text-slate-800 border-[var(--gold)] hover:bg-[var(--gold)] hover:text-white dark:text-[var(--gold)] dark:border-[var(--gold)] dark:hover:bg-[var(--gold)] dark:hover:text-black';
+        return `${base} ${active===id?activeCls:normal}`;
+      }
 
       function render(){
         try{
@@ -431,8 +461,9 @@
 
       // ===== Gallery Lightbox =====
       const lb = $('#lightbox'); const lbImg = $('#lightboxImg');
-      $('#gallery').addEventListener('click', e=>{ const el=e.target.closest('div'); if(!el) return; // replace with real <img>
-        lbImg.src = el.querySelector('img')?.src || '';
+      document.getElementById('gallery').addEventListener('click', e=>{
+        const img = e.target.closest('img'); if(!img) return;
+        lbImg.src = img.src;
         lb.showModal();
       });
 
@@ -448,6 +479,7 @@
 
       // Contact form validation (demo)
       $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); toast('Danke! Wir melden uns zeitnah.'); e.target.reset(); });
+
     </script>
   </body>
 </html>
