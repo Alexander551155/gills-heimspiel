@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gill’s Heimspiel – Indisches Restaurant Ober‑Olm</title>
+    <meta name="description" content="Indische Spezialitäten in Ober‑Olm – Gill’s Heimspiel. Reservieren, Speisekarte ansehen und genießen." />
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicon placeholder (ersetzen) -->
+    <link rel="icon" href="/favicon.png" />
+
+    <style>
+      /* ===== Custom Theme (Light/Dark), Glass, Animations ===== */
+      :root{
+        --bg: 255 255 255;          /* white */
+        --ink: 15 23 42;            /* slate-900 */
+        --muted: 100 116 139;       /* slate-500 */
+        --brand: 8 47 73;           /* sky-950ish */
+        --brand-2: 236 72 153;      /* pink-500 */
+        --card: 248 250 252;        /* slate-50 */
+      }
+      .dark:root{
+        --bg: 2 6 23;              /* midnight */
+        --ink: 226 232 240;        /* slate-200 */
+        --muted: 148 163 184;      /* slate-400 */
+        --brand: 56 189 248;       /* sky-400 */
+        --brand-2: 249 115 22;     /* orange-500 */
+        --card: 15 23 42;          /* slate-900 */
+      }
+      html,body{background: rgb(var(--bg)); color: rgb(var(--ink));}
+      .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.6);} /* improved in dark via utility */
+      .reveal{opacity:1;transform:none;transition:all .6s ease;} .reveal.hide{opacity:0;transform:translateY(18px);}
+      .reveal.show{opacity:1;transform:translateY(0);}
+      .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)}
+      .btn-primary{background:linear-gradient(135deg,rgb(var(--brand)) 0%, rgb(var(--brand-2)) 100%);color:white;border:none}
+      .btn-ghost{background:rgba(0,0,0,.03)}
+      .card{background: rgb(var(--card));border:1px solid rgba(0,0,0,.06);border-radius:1.25rem;box-shadow:0 6px 24px rgba(2,6,23,.06)}
+      .tag{font-size:.7rem;padding:.2rem .5rem;border-radius:.6rem;border:1px solid rgba(0,0,0,.08)}
+      .price{font-variant-numeric: tabular-nums;}
+    </style>
+  </head>
+  <body class="min-h-screen relative dark:bg-slate-950 dark:text-slate-100">
+    <!-- Top Gradient Background -->
+    <div aria-hidden class="pointer-events-none fixed inset-0 -z-10">
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-[900px] rounded-full blur-3xl opacity-30 dark:opacity-20" style="background: radial-gradient(closest-side, rgba(8,47,73,.6), transparent 70%), radial-gradient(closest-side, rgba(236,72,153,.35), transparent 75%)"></div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 border-b/0">
+      <div class="glass dark:bg-white/5 dark:border-slate-800/40 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a href="#home" class="font-semibold text-lg">Gill’s Heimspiel</a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+              <a href="#home" class="hover:opacity-70">Start</a>
+              <a href="#menu" class="hover:opacity-70">Speisekarte</a>
+              <a href="#about" class="hover:opacity-70">Über uns</a>
+              <a href="#contact" class="hover:opacity-70">Kontakt</a>
+            </nav>
+
+            <div class="flex items-center gap-2">
+              <button id="themeBtn" class="btn btn-ghost text-sm" title="Dark/Light">🌗</button>
+              <button id="navToggle" class="md:hidden inline-flex items-center justify-center rounded-xl border px-3 py-2">Menü</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden hidden border-t bg-white/95 dark:bg-slate-900/95 backdrop-blur">
+        <div class="px-4 py-3 flex flex-col gap-3">
+          <a href="#home" class="hover:opacity-70" onclick="closeMobileNav()">Start</a>
+          <a href="#menu" class="hover:opacity-70" onclick="closeMobileNav()">Speisekarte</a>
+          <a href="#about" class="hover:opacity-70" onclick="closeMobileNav()">Über uns</a>
+          <a href="#contact" class="hover:opacity-70" onclick="closeMobileNav()">Kontakt</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
+        <div class="w-full lg:w-1/2 reveal">
+          <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/60 dark:bg-slate-900/60">⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan</div>
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Indische Spezialitäten in Ober‑Olm</h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Vegetarisch & nicht‑vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#menu" class="btn btn-ghost">Speisekarte ansehen</a>
+            <a href="#contact" class="btn btn-primary">Jetzt reservieren</a>
+          </div>
+          <div id="openNow" class="mt-4 text-sm text-slate-600 dark:text-slate-400"></div>
+        </div>
+        <div class="w-full lg:w-1/2 reveal">
+          <div class="aspect-[4/3] w-full rounded-3xl card overflow-hidden flex items-center justify-center text-slate-500">
+            <span>Bild hier einfügen (z. B. hero.jpg)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speisekarte -->
+    <section id="menu" class="border-t bg-slate-50/60 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="reveal">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <h2 class="text-3xl sm:text-4xl font-bold">Speisekarte</h2>
+              <p class="mt-2 text-slate-600 dark:text-slate-300">Filter, Suche, Favoriten und Sortierung – alles in einem.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              <div class="relative flex-1">
+                <input id="menuSearch" class="w-full border rounded-2xl px-4 py-2 pr-10 bg-white/80 dark:bg-slate-900/60" placeholder="Suche nach Gericht…" />
+                <span class="absolute right-3 top-2.5 opacity-60">🔎</span>
+              </div>
+              <select id="menuSort" class="border rounded-2xl px-4 py-2 bg-white/80 dark:bg-slate-900/60">
+                <option value="default">Sortierung</option>
+                <option value="price-asc">Preis ↑</option>
+                <option value="price-desc">Preis ↓</option>
+                <option value="alpha">A–Z</option>
+              </select>
+              <button id="favToggle" class="border rounded-2xl px-4 py-2">❤️ Favoriten</button>
+            </div>
+          </div>
+
+          <!-- Filter -->
+          <div class="mt-6 flex flex-wrap gap-2" id="menuFilters"></div>
+
+          <!-- Menüliste -->
+          <div id="menuList" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerie (Lightbox) -->
+    <section class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="reveal">
+          <h3 class="text-2xl font-semibold">Galerie</h3>
+          <p class="text-slate-600 dark:text-slate-300">Fügen Sie eigene Fotos hinzu; Klick öffnet Lightbox.</p>
+          <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery">
+            <div class="aspect-square card overflow-hidden grid place-items-center">Bild 1</div>
+            <div class="aspect-square card overflow-hidden grid place-items-center">Bild 2</div>
+            <div class="aspect-square card overflow-hidden grid place-items-center">Bild 3</div>
+            <div class="aspect-square card overflow-hidden grid place-items-center">Bild 4</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Über uns -->
+    <section id="about" class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-center reveal">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold">Willkommen bei Gill’s Heimspiel</h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-300">Elegantes Ambiente, köstliche Rezepte – von Chicken Tikka Masala bis Dal Makhni. Unser Erfolg liegt in Ihrer Zufriedenheit. Kommen Sie und genießen Sie es!</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="tag">Familienfreundlich</span>
+              <span class="tag">Vegetarisch & Vegan</span>
+              <span class="tag">Tandoor‑Ofen</span>
+              <span class="tag">Feiern & Catering</span>
+            </div>
+          </div>
+          <div class="aspect-[4/3] rounded-3xl card overflow-hidden flex items-center justify-center text-slate-500">Galerie‑Platzhalter</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="border-t bg-slate-50/60 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal">
+        <h3 class="text-2xl font-semibold">FAQ</h3>
+        <details class="mt-4 card p-4"><summary class="font-medium cursor-pointer">Gibt es vegane Optionen?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Ja, viele – z. B. Dal, Baingan, vegane Currys. Achten Sie auf das Badge „vegan“.</p></details>
+        <details class="mt-3 card p-4"><summary class="font-medium cursor-pointer">Liefert ihr auch?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Auf Anfrage im Umkreis – oder als Catering für Events.</p></details>
+      </div>
+    </section>
+
+    <!-- Kontakt / Reservierung -->
+    <section id="contact" class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-start reveal">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold">Kontakt & Reservierung</h2>
+            <ul class="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
+              <li><strong>Telefon:</strong> <a class="underline" href="tel:+49">+49 …</a></li>
+              <li><strong>E‑Mail:</strong> <a class="underline" href="mailto:info@">info@…</a></li>
+              <li><strong>Adresse:</strong> …, 55270 Ober‑Olm</li>
+              <li><strong>Öffnungszeiten:</strong> Mo–So 11:30–22:00</li>
+            </ul>
+            <div class="mt-8 aspect-[4/3] rounded-3xl card grid place-items-center text-slate-500">Google‑Maps‑Embed hier einsetzen</div>
+          </div>
+
+          <form id="contactForm" class="card p-6">
+            <h3 class="text-xl font-semibold">Kurze Anfrage</h3>
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-1">
+                <label class="block text-sm mb-1">Name</label>
+                <input name="name" required type="text" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="Ihr Name" />
+              </div>
+              <div class="sm:col-span-1">
+                <label class="block text-sm mb-1">E‑Mail</label>
+                <input name="email" required type="email" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="name@mail.de" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-sm mb-1">Nachricht</label>
+                <textarea name="message" required class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" rows="5" placeholder="Ihre Anfrage…"></textarea>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="inline-flex items-center gap-2 text-sm"><input type="checkbox" required class="border"/> Ich stimme der Datenverarbeitung zu.</label>
+              </div>
+            </div>
+            <button class="mt-4 btn btn-primary w-full" type="submit">Senden</button>
+            <p class="mt-2 text-xs text-slate-500">(Statisch. Für echten Versand z. B. Formspree/Netlify verwenden.)</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p>© <span id="year"></span> Gill’s Heimspiel · Alle Rechte vorbehalten.</p>
+        <div class="flex gap-4">
+          <a href="#" class="underline">Impressum</a>
+          <a href="#" class="underline">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <dialog id="lightbox" class="backdrop:bg-black/70 rounded-2xl p-0 w-11/12 max-w-3xl">
+      <img id="lightboxImg" alt="Galerie Bild" class="w-full h-auto"/>
+      <button class="btn btn-ghost w-full" onclick="lightbox.close()">Schließen</button>
+    </dialog>
+
+    <!-- Back to Top -->
+    <button id="toTop" class="fixed bottom-6 right-6 hidden btn btn-ghost shadow-lg">↑ Top</button>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden px-4 py-2 rounded-xl bg-black text-white text-sm"></div>
+
+    <!-- Cookie / Info Banner -->
+    <div id="cookie" class="fixed inset-x-0 bottom-0 p-4 md:p-6 hidden">
+      <div class="card p-4 md:p-5 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-3">
+        <p class="text-sm text-slate-600 dark:text-slate-300">Diese Website verwendet nur technisch notwendige Cookies.</p>
+        <button class="btn btn-primary" onclick="dismissCookie()">Verstanden</button>
+      </div>
+    </div>
+
+    <script>
+      // ===== Utilities =====
+      const $ = (s, r=document) => r.querySelector(s);
+      const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+      const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'), 2000); };
+
+      // Year in footer
+      $('#year').textContent = new Date().getFullYear();
+
+      // Theme toggle (Dark/Light)
+      const themeBtn = $('#themeBtn');
+      function applyTheme(){ document.documentElement.classList.toggle('dark', localStorage.theme === 'dark'); }
+      themeBtn.addEventListener('click', ()=>{ localStorage.theme = localStorage.theme==='dark'?'light':'dark'; applyTheme(); });
+      if(!localStorage.theme){ localStorage.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'; }
+      applyTheme();
+
+      // Mobile Nav
+      const navToggle = $('#navToggle');
+      const mobileNav = $('#mobileNav');
+      function closeMobileNav(){ mobileNav.classList.add('hidden'); }
+      navToggle?.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+
+      // Reveal on scroll
+      if ('IntersectionObserver' in window){
+        const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
+        $$('.reveal').forEach(el=>{ el.classList.add('hide'); io.observe(el); });
+      } else {
+        // Fallback: sofort anzeigen (ältere Handys)
+        $$('.reveal').forEach(el=> el.classList.add('show'));
+      }
+
+      // Open now indicator (simple hours model)
+      const hours = { open: 11.5, close: 22.0 }; // 11:30 - 22:00
+      (function(){
+        const now = new Date(); const h = now.getHours() + now.getMinutes()/60;
+        const open = h>=hours.open && h<=hours.close;
+        $('#openNow').innerHTML = open ? '🟢 Gerade geöffnet' : '🔴 Derzeit geschlossen';
+      })();
+
+      // ===== MENU DATA & FEATURES =====
+      const categories = [
+        { id: 'vorspeisen', name: 'Warme Vorspeisen' },
+        { id: 'beilagen', name: 'Beilagen' },
+        { id: 'tandoori', name: 'Tandoori Spezialitäten' },
+        { id: 'haehnchen', name: 'Hähnchen Spezialitäten' },
+        { id: 'lamm', name: 'Lamm Spezialitäten' },
+        { id: 'fisch', name: 'Fisch & Garnelen' },
+        { id: 'biryani', name: 'Biryanis' },
+        { id: 'veg', name: 'Vegetarisch & Vegan' },
+        { id: 'burger', name: 'Burger' },
+        { id: 'schnitzel', name: 'Schnitzel' },
+        { id: 'salat', name: 'Salate' },
+      ];
+
+      const items = [
+        { id:1, cat:'vorspeisen', title:'Dal Soup', vegan:true, desc:'Pürierte Linsensuppe', price:6.5 },
+        { id:2, cat:'vorspeisen', title:'Paneer Pakoras', veg:true, desc:'Hausgemachter Käse im Kichererbsenteig', price:7.5 },
+        { id:3, cat:'vorspeisen', title:'Jeengha Pakoras', spicy:true, desc:'Riesengarnelen in Kichererbsenteig', price:8.9 },
+        { id:4, cat:'vorspeisen', title:'Chicken Pakoras', desc:'Hähnchenbrustfilet in Kichererbsenteig', price:7.9 },
+        { id:5, cat:'beilagen', title:'Tandoori Naan', desc:'Naan mit hausgemachter Butter', price:2.9 },
+        { id:6, cat:'beilagen', title:'Garlic Naan', desc:'Naan mit Knoblauch', price:3.5 },
+        { id:7, cat:'beilagen', title:'Masala Naan', desc:'Gewürze, Koriander, Kümmel, Knoblauch', price:3.5 },
+        { id:8, cat:'tandoori', title:'Shanshahi Murgh Tikka', desc:'Hähnchenbrust, Joghurt & Safran', price:20.9 },
+        { id:9, cat:'tandoori', title:'Murgh Malai Tikka', desc:'Hähnchenbrust, Sahne & milde Gewürze', price:20.9 },
+        { id:10, cat:'tandoori', title:'Tandoori Lamm Tikka', spicy:true, desc:'Lammhüfte in Joghurt & Gewürzen', price:22.9 },
+        { id:11, cat:'fisch', title:'Tandoori Jeengha', desc:'Riesengarnelen in südindischen Gewürzen', price:22.9 },
+        { id:12, cat:'haehnchen', title:'Murgh Sahi Korma', desc:'Sahne, Cashew, Kokos, Mandeln', price:17.9 },
+        { id:13, cat:'haehnchen', title:'Tandoori Murgh Masala', desc:'Gegrilltes Hähnchen, Tomaten‑Sahne', price:19.9 },
+        { id:14, cat:'haehnchen', title:'Butter Chicken Tandoori', desc:'Sahnige Butter‑Tomate', price:18.9 },
+        { id:15, cat:'lamm', title:'Lamb Shahi Korma', desc:'Aromatische Sahne‑Currysoße', price:18.9 },
+        { id:16, cat:'lamm', title:'Tandoori Lamb Masala', desc:'Gegrillte Lammhüfte in Masala', price:20.9 },
+        { id:17, cat:'lamm', title:'Karahi Gost', spicy:true, desc:'Ingwer, Knoblauch, Tomaten', price:19.9 },
+        { id:18, cat:'fisch', title:'Machi Korma', desc:'Seelachsfilet, delikate Currysoße', price:19.9 },
+        { id:19, cat:'fisch', title:'Machi Karahi', desc:'Seelachs, Tomaten, Ingwer, Knoblauch', price:19.9 },
+        { id:20, cat:'biryani', title:'Murgh Biryani', desc:'Hähnchen, Basmati, Gewürze, Rosinen, Nüsse', price:17.9 },
+        { id:21, cat:'biryani', title:'Jeengha Biryani', desc:'Riesengarnelen, Basmati & Gewürze', price:19.9 },
+        { id:22, cat:'veg', title:'Baingan Bhartha', vegan:true, desc:'Gegrillte Aubergine, Tomaten, Zwiebeln, Masala', price:16.9 },
+        { id:23, cat:'veg', title:'Special Dal Makhni', veg:true, desc:'Schwarze Linsen, Butter & Sahne', price:16.9 },
+        { id:24, cat:'veg', title:'Palak Paneer', veg:true, desc:'Spinat mit hausgemachtem Käse', price:17.5 },
+        { id:25, cat:'burger', title:'American Classic Beef‑Burger', desc:'Mit Pommes inklusive', price:14.9 },
+        { id:26, cat:'burger', title:'Indian Chicken Tikka‑Burger', desc:'Mit Tikka‑Sauce & Pommes', price:15.9 },
+        { id:27, cat:'schnitzel', title:'Schnitzel Wiener Art', desc:'Mit Zitrone & Petersilie (inkl. Pommes)', price:14.9 },
+        { id:28, cat:'salat', title:'Gemischter Salat (Haus)', vegan:true, desc:'Tomaten, Gurken, Paprika, Oliven …', price:10.9 },
+        { id:29, cat:'salat', title:'Tandoori Chicken Salat', desc:'Chicken aus dem Tandoor, Gemüse', price:14.9 },
+      ];
+
+      const filtersEl = $('#menuFilters');
+      const listEl = $('#menuList');
+      const searchEl = $('#menuSearch');
+      const sortEl = $('#menuSort');
+      const favToggle = $('#favToggle');
+      let active = 'alle';
+      let showFav = false;
+      const favs = new Set(JSON.parse(localStorage.getItem('favs')||'[]'));
+      const saveFavs = ()=>localStorage.setItem('favs', JSON.stringify([...favs]));
+
+      function renderFilters(){
+        filtersEl.innerHTML = '';
+        const mkBtn = (id,label)=>{ const b=document.createElement('button'); b.className = btnClass(id); b.textContent=label; b.onclick=()=>{active=id; render();}; return b; };
+        filtersEl.appendChild(mkBtn('alle','Alle'));
+        for(const c of categories){ filtersEl.appendChild(mkBtn(c.id,c.name)); }
+        filtersEl.appendChild(mkBtn('vegan','Vegan')); filtersEl.appendChild(mkBtn('veg','Vegetarisch'));
+        filtersEl.appendChild(mkBtn('spicy','Scharf'));
+      }
+      function btnClass(id){ const base='px-3 py-2 rounded-2xl border text-sm'; const activeCls='bg-slate-900 text-white dark:bg-white dark:text-slate-900'; const normal='bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100/80'; return `${base} ${active===id?activeCls:normal}`; }
+
+      function render(){
+        let q = (searchEl.value||'').toLowerCase();
+        let data = items.filter(i=>{
+          if(showFav && !favs.has(i.id)) return false;
+          if(active==='alle') return true;
+          if(['vegan','veg','spicy'].includes(active)) return !!i[active];
+          return i.cat===active;
+        }).filter(i=> i.title.toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q));
+
+        switch (sortEl.value){
+          case 'price-asc': data.sort((a,b)=>a.price-b.price); break;
+          case 'price-desc': data.sort((a,b)=>b.price-a.price); break;
+          case 'alpha': data.sort((a,b)=>a.title.localeCompare(b.title,'de')); break;
+        }
+
+        listEl.innerHTML = '';
+        for(const i of data){
+          const card = document.createElement('article');
+          card.className = 'card p-5 flex flex-col';
+          const badges = [ i.vegan?'<span class="tag">vegan</span>':'', i.veg?'<span class="tag">vegetarisch</span>':'', i.spicy?'<span class="tag">🌶️ scharf</span>':'' ].filter(Boolean).join(' ');
+          const fav = favs.has(i.id) ? '❤️' : '🤍';
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-semibold text-lg">${i.title}</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">${i.desc||''}</p>
+                <div class="flex flex-wrap gap-2 mt-2">${badges}</div>
+              </div>
+              <div class="text-right">
+                <div class="font-semibold whitespace-nowrap price">${i.price.toFixed(2).replace('.',',')}€</div>
+                <button aria-label="Favorit" class="mt-2" data-id="${i.id}">${fav}</button>
+              </div>
+            </div>`;
+          listEl.appendChild(card);
+        }
+
+        // favorite buttons
+        $$('button[data-id]', listEl).forEach(b=> b.onclick = ()=>{ const id=Number(b.dataset.id); if(favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); render(); toast('Aktualisiert'); });
+      }
+
+      searchEl.addEventListener('input', render);
+      sortEl.addEventListener('change', render);
+      favToggle.addEventListener('click', ()=>{ showFav=!showFav; favToggle.classList.toggle('bg-slate-900'); favToggle.classList.toggle('text-white'); render(); });
+
+      renderFilters();
+      render();
+
+      // ===== Gallery Lightbox =====
+      const lb = $('#lightbox'); const lbImg = $('#lightboxImg');
+      $('#gallery').addEventListener('click', e=>{ const el=e.target.closest('div'); if(!el) return; // replace with real <img>
+        lbImg.src = el.querySelector('img')?.src || '';
+        lb.showModal();
+      });
+
+      // Back to top
+      const toTop = $('#toTop');
+      window.addEventListener('scroll', ()=>{ toTop.classList.toggle('hidden', window.scrollY < 400); });
+      toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+      // Cookie banner (simple)
+      function dismissCookie(){ localStorage.cookieOK = '1'; $('#cookie').classList.add('hidden'); }
+      window.dismissCookie = dismissCookie;
+      if(!localStorage.cookieOK) $('#cookie').classList.remove('hidden');
+
+      // Contact form validation (demo)
+      $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); toast('Danke! Wir melden uns zeitnah.'); e.target.reset(); });
+    </script>
+  </body>
+</html>
