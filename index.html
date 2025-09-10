@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gill’s Heimspiel – Indisches Restaurant Ober‑Olm</title>
+    <meta name="description" content="Indische Spezialitäten in Ober‑Olm – Gill’s Heimspiel. Reservieren, Speisekarte ansehen und genießen." />
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicon placeholder (ersetzen) -->
+    <link rel="icon" href="/favicon.png" />
+
+    <style>
+      /* Kleines, elegantes Scroll- und Reveal-Feeling ohne externe Libs */
+      html { scroll-behavior: smooth; }
+      .reveal { opacity: 0; transform: translateY(16px); transition: all .6s ease; }
+      .reveal.show { opacity: 1; transform: translateY(0); }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-800 bg-white">
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="#home" class="font-semibold text-lg">Gill’s Heimspiel</a>
+
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="#home" class="hover:opacity-70">Start</a>
+            <a href="#menu" class="hover:opacity-70">Speisekarte</a>
+            <a href="#about" class="hover:opacity-70">Über uns</a>
+            <a href="#contact" class="hover:opacity-70">Kontakt</a>
+          </nav>
+
+          <button id="navToggle" class="md:hidden inline-flex items-center justify-center rounded-xl border px-3 py-2">
+            Menü
+          </button>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden hidden border-t">
+        <div class="px-4 py-3 flex flex-col gap-3">
+          <a href="#home" class="hover:opacity-70" onclick="closeMobileNav()">Start</a>
+          <a href="#menu" class="hover:opacity-70" onclick="closeMobileNav()">Speisekarte</a>
+          <a href="#about" class="hover:opacity-70" onclick="closeMobileNav()">Über uns</a>
+          <a href="#contact" class="hover:opacity-70" onclick="closeMobileNav()">Kontakt</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
+        <div class="w-full lg:w-1/2">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Indische Spezialitäten in Ober‑Olm</h1>
+          <p class="mt-4 text-lg text-slate-600">Vegetarisch & nicht‑vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#menu" class="inline-flex items-center justify-center rounded-2xl border px-5 py-3 font-medium">Speisekarte</a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-5 py-3 font-medium">Reservieren</a>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2">
+          <!-- Bild-Platzhalter – eigene Fotos hier einsetzen -->
+          <div class="aspect-[4/3] w-full rounded-3xl bg-slate-100 border flex items-center justify-center text-slate-500">
+            <span>Bild hier einfügen (z. B. Restaurant/gericht.jpg)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speisekarte -->
+    <section id="menu" class="border-t bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="reveal">
+          <h2 class="text-3xl sm:text-4xl font-bold">Speisekarte</h2>
+          <p class="mt-3 text-slate-600">Auszug aus unserer Karte. Bilder und Preise können Sie jederzeit im Code anpassen.</p>
+
+          <!-- Filter -->
+          <div class="mt-6 flex flex-wrap gap-2" id="menuFilters">
+            <!-- Buttons werden via JS generiert -->
+          </div>
+
+          <!-- Menüliste -->
+          <div id="menuList" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Über uns -->
+    <section id="about" class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-center reveal">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold">Willkommen bei Gill’s Heimspiel</h2>
+            <p class="mt-4 text-slate-600">Elegantes Ambiente, köstliche Rezepte – von Chicken Tikka Masala bis Dal Makhni. Unser Erfolg liegt in Ihrer Zufriedenheit. Kommen Sie und genießen Sie es!</p>
+          </div>
+          <div class="aspect-[4/3] rounded-3xl bg-slate-100 border flex items-center justify-center text-slate-500">
+            <span>Galerie‑Platzhalter (eigene Bilder)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt / Reservierung -->
+    <section id="contact" class="border-t bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-start reveal">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold">Kontakt & Reservierung</h2>
+            <p class="mt-4 text-slate-600">Rufen Sie uns an oder schreiben Sie uns für Ihre Tischreservierung oder Feier.</p>
+
+            <ul class="mt-6 space-y-3 text-slate-700">
+              <li><strong>Telefon:</strong> <a class="underline" href="tel:+49">+49 …</a></li>
+              <li><strong>E‑Mail:</strong> <a class="underline" href="mailto:info@">info@…</a></li>
+              <li><strong>Adresse:</strong> …, 55270 Ober‑Olm</li>
+              <li><strong>Öffnungszeiten:</strong> z. B. Mo–So 11:30–22:00</li>
+            </ul>
+
+            <div class="mt-8 aspect-[4/3] rounded-3xl bg-slate-100 border flex items-center justify-center text-slate-500">
+              <span>Google‑Maps‑Embed hier einsetzen</span>
+            </div>
+          </div>
+
+          <form class="bg-white border rounded-3xl p-6 shadow-sm">
+            <h3 class="text-xl font-semibold">Kurze Anfrage</h3>
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-1">
+                <label class="block text-sm mb-1">Name</label>
+                <input type="text" class="w-full border rounded-xl px-3 py-2" placeholder="Ihr Name" />
+              </div>
+              <div class="sm:col-span-1">
+                <label class="block text-sm mb-1">E‑Mail</label>
+                <input type="email" class="w-full border rounded-xl px-3 py-2" placeholder="name@mail.de" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-sm mb-1">Nachricht</label>
+                <textarea class="w-full border rounded-xl px-3 py-2" rows="5" placeholder="Ihre Anfrage…"></textarea>
+              </div>
+            </div>
+            <button type="button" onclick="alert('Danke! Wir melden uns zeitnah.')" class="mt-4 inline-flex items-center justify-center rounded-2xl bg-slate-900 text-white px-5 py-3 font-medium w-full">Senden</button>
+            <p class="mt-2 text-xs text-slate-500">(Dieses Formular ist ein statisches Beispiel. Für echten Versand bitte E‑Mail‑Service hinzufügen.)</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p>© <span id="year"></span> Gill’s Heimspiel · Alle Rechte vorbehalten.</p>
+        <div class="flex gap-4">
+          <a href="#" class="underline">Impressum</a>
+          <a href="#" class="underline">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Jahr im Footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile Nav
+      const navToggle = document.getElementById('navToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      function closeMobileNav(){ mobileNav.classList.add('hidden'); }
+      navToggle?.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+
+      // Reveal on scroll
+      const observer = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // --- Menüdaten (einfach erweiterbar) ---
+      // Kategorien
+      const categories = [
+        { id: 'vorspeisen', name: 'Warme Vorspeisen' },
+        { id: 'beilagen', name: 'Beilagen' },
+        { id: 'tandoori', name: 'Tandoori Spezialitäten' },
+        { id: 'haehnchen', name: 'Hähnchen Spezialitäten' },
+        { id: 'lamm', name: 'Lamm Spezialitäten' },
+        { id: 'fisch', name: 'Fisch & Garnelen' },
+        { id: 'biryani', name: 'Biryanis' },
+        { id: 'veg', name: 'Vegetarisch & Vegan' },
+        { id: 'burger', name: 'Burger' },
+        { id: 'schnitzel', name: 'Schnitzel' },
+        { id: 'salat', name: 'Salate' },
+      ];
+
+      // Auszug der Speisen (Preise/Text leicht aus PDF übernommen – bitte bei Bedarf anpassen/erweitern)
+      const items = [
+        { cat: 'vorspeisen', title: 'Dal Soup (vegan)', desc: 'Pürierte Linsensuppe', price: '6,50€' },
+        { cat: 'vorspeisen', title: 'Paneer Pakoras (vegetarisch)', desc: 'Hausgemachter Käse im Kichererbsenteig', price: '7,50€' },
+        { cat: 'vorspeisen', title: 'Jeengha Pakoras', desc: 'Riesengarnelen in Kichererbsenteig', price: '8,90€' },
+        { cat: 'vorspeisen', title: 'Chicken Pakoras', desc: 'Hähnchenbrustfilet in Kichererbsenteig', price: '7,90€' },
+        { cat: 'beilagen', title: 'Tandoori Naan', desc: 'Naan mit hausgemachter Butter', price: '2,90€' },
+        { cat: 'beilagen', title: 'Garlic Naan', desc: 'Naan mit Knoblauch', price: '3,50€' },
+        { cat: 'beilagen', title: 'Masala Naan', desc: 'Gewürze, Koriander, Kümmel, Knoblauch', price: '3,50€' },
+        { cat: 'tandoori', title: 'Shanshahi Murgh Tikka', desc: 'Hähnchenbrust, Joghurt & Safran', price: '20,90€' },
+        { cat: 'tandoori', title: 'Murgh Malai Tikka', desc: 'Hähnchenbrust, Sahne & milde Gewürze', price: '20,90€' },
+        { cat: 'tandoori', title: 'Tandoori Lamm Tikka (scharf)', desc: 'Lammhüfte in Joghurt & Gewürzen', price: '22,90€' },
+        { cat: 'fisch', title: 'Tandoori Jeengha', desc: 'Riesengarnelen in südindischen Gewürzen', price: '22,90€' },
+        { cat: 'haehnchen', title: 'Murgh Sahi Korma', desc: 'Currysoße aus Sahne, Cashew, Kokos, Mandeln', price: '17,90€' },
+        { cat: 'haehnchen', title: 'Tandoori Murgh Masala (Chef’s Art)', desc: 'Gegrilltes Hähnchen in Tomaten‑Sahnesoße', price: '19,90€' },
+        { cat: 'haehnchen', title: 'Butter Chicken Tandoori', desc: 'Sahnige Butter‑Tomatensoße', price: '18,90€' },
+        { cat: 'lamm', title: 'Lamb Shahi Korma', desc: 'Aromatische Sahne‑Currysoße', price: '18,90€' },
+        { cat: 'lamm', title: 'Tandoori Lamb Masala', desc: 'Gegrillte Lammhüfte in Masala', price: '20,90€' },
+        { cat: 'lamm', title: 'Karahi Gost', desc: 'Mit Ingwer, Knoblauch, Tomaten (kräftig/scharf)', price: '19,90€' },
+        { cat: 'fisch', title: 'Machi Korma', desc: 'Seelachsfilet in delikater Currysoße', price: '19,90€' },
+        { cat: 'fisch', title: 'Machi Karahi', desc: 'Seelachsfilet mit Tomaten, Ingwer, Knoblauch', price: '19,90€' },
+        { cat: 'biryani', title: 'Murgh Biryani', desc: 'Hähnchen, Basmati, Gewürze, Rosinen, Nüsse', price: '17,90€' },
+        { cat: 'biryani', title: 'Jeengha Biryani', desc: 'Riesengarnelen, Basmati & Gewürze', price: '19,90€' },
+        { cat: 'veg', title: 'Baingan Bhartha', desc: 'Gegrillte Aubergine, Tomaten, Zwiebeln, Masala', price: '16,90€' },
+        { cat: 'veg', title: 'Special Dal Makhni', desc: 'Schwarze Linsen, Butter & Sahne', price: '16,90€' },
+        { cat: 'veg', title: 'Palak Paneer', desc: 'Spinat mit hausgemachtem Käse', price: '17,50€' },
+        { cat: 'burger', title: 'American Classic Beef‑Burger', desc: 'Mit Pommes inklusive', price: '14,90€' },
+        { cat: 'burger', title: 'Indian Chicken Tikka‑Burger', desc: 'Mit Tikka‑Sauce & Pommes', price: '15,90€' },
+        { cat: 'schnitzel', title: 'Wiener Art', desc: 'Mit Zitrone & Petersilie (inkl. Pommes)', price: '14,90€' },
+        { cat: 'salat', title: 'Gemischter Salat (Haus)', desc: 'Mit Tomaten, Gurken, Paprika, Oliven, …', price: '10,90€' },
+        { cat: 'salat', title: 'Tandoori Chicken Salat', desc: 'Chicken aus dem Tandoor, Gemüse', price: '14,90€' },
+      ];
+
+      // Filter-Buttons
+      const filtersEl = document.getElementById('menuFilters');
+      const listEl = document.getElementById('menuList');
+      let active = 'alle';
+      function renderFilters(){
+        filtersEl.innerHTML = '';
+        const allBtn = document.createElement('button');
+        allBtn.className = btnClass('alle');
+        allBtn.textContent = 'Alle';
+        allBtn.onclick = () => { active = 'alle'; renderList(); renderFilters(); };
+        filtersEl.appendChild(allBtn);
+        for(const c of categories){
+          const b = document.createElement('button');
+          b.className = btnClass(c.id);
+          b.textContent = c.name;
+          b.onclick = () => { active = c.id; renderList(); renderFilters(); };
+          filtersEl.appendChild(b);
+        }
+      }
+      function btnClass(id){
+        const base = 'px-3 py-2 rounded-2xl border text-sm';
+        const activeCls = 'bg-slate-900 text-white';
+        const normal = 'bg-white hover:bg-slate-100';
+        return `${base} ${active===id?activeCls:normal}`;
+      }
+
+      // Menü rendern
+      function renderList(){
+        listEl.innerHTML = '';
+        const filtered = active==='alle' ? items : items.filter(i => i.cat===active);
+        for(const i of filtered){
+          const card = document.createElement('article');
+          card.className = 'bg-white border rounded-2xl p-5 shadow-sm flex flex-col';
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-semibold text-lg">${i.title}</h4>
+                <p class="text-sm text-slate-600 mt-1">${i.desc}</p>
+              </div>
+              <div class="font-semibold whitespace-nowrap">${i.price}</div>
+            </div>
+          `;
+          listEl.appendChild(card);
+        }
+      }
+
+      renderFilters();
+      renderList();
+    </script>
+  </body>
+</html>
