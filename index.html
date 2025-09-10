@@ -273,10 +273,12 @@
 
       // Reveal on scroll
       if ('IntersectionObserver' in window){
-        const io = new IntersectionObserver((ents)=>{ for(const e of ents) if(e.isIntersecting) e.target.classList.add('show');},{threshold:.2});
-        $$('.reveal').forEach(el=>{ el.classList.add('hide'); io.observe(el); });
+        const io = new IntersectionObserver((ents)=>{
+          for(const e of ents){ if(e.isIntersecting) e.target.classList.add('show'); }
+        },{threshold:.1});
+        $$('.reveal').forEach(el=> io.observe(el));
       } else {
-        // Fallback: sofort anzeigen (ältere Handys)
+        // Fallback: show immediately
         $$('.reveal').forEach(el=> el.classList.add('show'));
       }
 
