@@ -1,486 +1,1101 @@
-<!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<!doctype html>
+<html lang="de">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gill’s Heimspiel – Indisches Restaurant Ober-Olm</title>
-    <meta name="description" content="Indische Spezialitäten in Ober-Olm – Gill’s Heimspiel. Reservieren, Speisekarte ansehen und genießen." />
-
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Favicon placeholder (ersetzen) -->
-    <link rel="icon" href="/favicon.png" />
-
+    <title>Gill's Heimspiel – Indisches Restaurant in Ober-Olm</title>
+    <meta
+      name="description"
+      content="Indische Spezialitaeten, Tandoor und Biryani in Ober-Olm. Gill's Heimspiel – Vereinsgaststaette des SV Ober-Olm."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Space+Grotesk:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* ===== Custom Theme (Light/Dark), Glass, Animations ===== */
-      :root{
-        --bg: 255 255 255;          /* white */
-        --ink: 15 23 42;            /* slate-900 */
-        --muted: 100 116 139;       /* slate-500 */
-        --brand: 8 47 73;           /* sky-950ish */
-        --brand-2: 236 72 153;      /* pink-500 */
-        --card: 248 250 252;        /* slate-50 */
-        --gold: #d4af37;            /* Gold für Buttons / Rahmen */
+      :root {
+        --bg: #fff7ec;
+        --bg-deep: #f4dfc6;
+        --ink: #1e1512;
+        --accent: #a23a1f;
+        --accent-soft: #d98241;
+        --muted: #6b5f57;
+        --card: #fffaf4;
+        --shadow: 0 20px 60px rgba(23, 16, 12, 0.18);
+        --radius: 22px;
       }
-      .dark:root{
-        --bg: 2 6 23;              /* midnight */
-        --ink: 226 232 240;        /* slate-200 */
-        --muted: 148 163 184;      /* slate-400 */
-        --brand: 56 189 248;       /* sky-400 */
-        --brand-2: 249 115 22;     /* orange-500 */
-        --card: 15 23 42;          /* slate-900 */
+
+      * {
+        box-sizing: border-box;
       }
-      html,body{background: rgb(var(--bg)); color: rgb(var(--ink));}
-      .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.6);} /* improved in dark via utility */
-      .reveal{opacity:1;transform:none;transition:all .6s ease;} /* Always visible by default */
-      .reveal.show{opacity:1;transform:translateY(0);} 
-      .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:1rem;padding:.75rem 1.2rem;font-weight:600;border:1px solid rgba(0,0,0,.08)}
-      /* ==== Buttons: Light = Weiß/Gold, Dark = Schwarz/Gold ==== */
-      .btn-primary{background:#fff;color:var(--gold);border:1px solid var(--gold)}
-      .btn-primary:hover{background:var(--gold);color:#fff}
-      .dark .btn-primary{background:#000;color:var(--gold);border-color:var(--gold)}
-      .dark .btn-primary:hover{background:var(--gold);color:#000}
-      .btn-ghost{background:rgba(0,0,0,.03)}
-      .card{background: rgb(var(--card));border:1px solid rgba(0,0,0,.06);border-radius:1.25rem;box-shadow:0 6px 24px rgba(2,6,23,.06)}
-      .tag{font-size:.7rem;padding:.2rem .5rem;border-radius:.6rem;border:1px solid rgba(0,0,0,.08)}
-      .price{font-variant-numeric: tabular-nums;}
+
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: radial-gradient(circle at 20% 0%, #fff3e2, transparent 48%),
+          radial-gradient(circle at 80% 15%, #fde3c8, transparent 52%),
+          linear-gradient(180deg, var(--bg) 0%, #fff 40%, var(--bg-deep) 100%);
+        min-height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 246, 236, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(27, 21, 18, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
+
+      .brand {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .brand img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        object-fit: cover;
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .brand span {
+        font-family: "Cormorant Garamond", "Georgia", serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        font-size: 0.98rem;
+      }
+
+      .nav-cta {
+        margin-left: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-cta .btn {
+        padding: 10px 18px;
+        background: var(--accent);
+        color: #fff;
+        border-radius: 999px;
+        box-shadow: 0 10px 22px rgba(162, 58, 31, 0.35);
+        animation: pulseCall 2.2s infinite;
+      }
+
+      @keyframes pulseCall {
+        0%,
+        100% {
+          transform: translateY(0);
+          box-shadow: 0 10px 22px rgba(162, 58, 31, 0.35);
+        }
+        50% {
+          transform: translateY(-3px);
+          box-shadow: 0 16px 30px rgba(162, 58, 31, 0.55);
+        }
+      }
+
+      .nav-links a {
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        width: 100%;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: 0;
+        padding: 8px;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 26px;
+        height: 2px;
+        margin: 6px 0;
+        background: var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        padding: 110px 0 90px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          110deg,
+          rgba(10, 7, 6, 0.78) 0%,
+          rgba(10, 7, 6, 0.5) 45%,
+          rgba(10, 7, 6, 0.2) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: scale(1.05);
+        animation: heroSlide 18s infinite;
+      }
+
+      .hero-slide:nth-child(1) {
+        animation-delay: 0s;
+        background-image: url("Bild1.jpeg");
+      }
+
+      .hero-slide:nth-child(2) {
+        animation-delay: 6s;
+        background-image: url("Bild2.jpg");
+      }
+
+      .hero-slide:nth-child(3) {
+        animation-delay: 12s;
+        background-image: url("Bild3.jpg");
+      }
+
+      @keyframes heroSlide {
+        0% {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+        8% {
+          opacity: 1;
+        }
+        33% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        41% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        display: grid;
+        gap: 12px;
+        max-width: 520px;
+        padding: 18px 20px;
+        border-radius: 20px;
+        background: rgba(12, 10, 9, 0.56);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(6px);
+      }
+
+      .hero h1 {
+        font-family: "Cormorant Garamond", "Georgia", serif;
+        font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+        margin: 0;
+        color: #ffe5c8;
+        text-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+      }
+
+      .hero p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      .hero-subtitle {
+        font-size: 0.92rem;
+      }
+
+      .hero-text {
+        font-size: 0.88rem;
+        margin-top: -4px;
+      }
+
+      .open-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        width: fit-content;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
+
+      .open-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #7bff9c;
+        box-shadow: 0 0 12px rgba(123, 255, 156, 0.6);
+      }
+
+      .open-dot.closed {
+        background: #ff9a9a;
+        box-shadow: 0 0 12px rgba(255, 154, 154, 0.6);
+      }
+
+      .open-note {
+        font-size: 0.58rem;
+        color: rgba(255, 255, 255, 0.9);
+        display: none;
+        text-shadow: 0 0 10px rgba(255, 210, 180, 0.7);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .btn {
+        border: 1px solid transparent;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(162, 58, 31, 0.4);
+      }
+
+      .btn.secondary {
+        border-color: rgba(255, 255, 255, 0.8);
+        color: #fff;
+      }
+
+      .btn.light {
+        background: #fff;
+        color: var(--accent);
+        border-color: rgba(162, 58, 31, 0.2);
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .section {
+        padding: 16px 0;
+      }
+
+      .section h2 {
+        font-family: "Cormorant Garamond", "Georgia", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 12px;
+      }
+
+      .section p {
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--card);
+        padding: 18px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .signature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .signature-card img {
+        border-radius: 16px;
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .about-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .menu-panel {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        align-items: stretch;
+      }
+
+      .menu-thumb {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        background: #f6efe7;
+        border: 1px solid rgba(162, 58, 31, 0.15);
+        min-height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu-thumb span {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        background: rgba(27, 21, 18, 0.78);
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+
+      .menu-thumb:hover,
+      .menu-thumb:focus-visible {
+        transform: translateY(-4px);
+      }
+
+      .menu-preview {
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid rgba(162, 58, 31, 0.15);
+        box-shadow: var(--shadow);
+      }
+
+      .menu-preview object,
+      .menu-preview iframe {
+        width: 100%;
+        height: 360px;
+        border: 0;
+        display: block;
+        background: #fff;
+      }
+
+      .menu-note {
+        margin-top: 10px;
+        padding: 20px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(162, 58, 31, 0.2);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .gallery-slider {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .gallery-track {
+        display: flex;
+        transition: transform 0.6s ease;
+      }
+
+      .gallery-slide {
+        min-width: 100%;
+        height: 360px;
+        position: relative;
+      }
+
+      .gallery-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .gallery-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .gallery-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(27, 21, 18, 0.4);
+        background: transparent;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .gallery-dot.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: scale(1.1);
+      }
+
+      .highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .highlight-item {
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid rgba(162, 58, 31, 0.15);
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mark {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border: 1px solid rgba(27, 21, 18, 0.55);
+        flex: 0 0 auto;
+      }
+
+      .mark-dot {
+        border-radius: 50%;
+      }
+
+      .mark-square {
+        border-radius: 2px;
+      }
+
+      .mark-diamond {
+        transform: rotate(45deg);
+      }
+
+      .mark-ring {
+        border-radius: 50%;
+        border-width: 2px;
+      }
+
+      .contact {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+      }
+
+      .contact-card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .portrait {
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .footer {
+        padding: 30px 0 50px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .footer a {
+        color: var(--accent);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 10, 8, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        z-index: 50;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-content {
+        max-width: min(900px, 92vw);
+        width: 100%;
+        max-height: 86vh;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: #f7f2ec;
+        position: relative;
+      }
+
+      .modal-content iframe {
+        width: 100%;
+        height: 78vh;
+        border: 0;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(27, 21, 18, 0.85);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 6px 12px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 900px) {
+        .gallery-slide {
+          height: 260px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          right: 4vw;
+          background: rgba(255, 255, 255, 0.96);
+          border-radius: 16px;
+          padding: 18px;
+          flex-direction: column;
+          gap: 12px;
+          box-shadow: var(--shadow);
+          display: none;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .open-pill {
+          top: auto;
+          bottom: 10px;
+          right: 10px;
+        }
+
+        .open-note {
+          font-size: 0.64rem;
+        }
+      }
     </style>
   </head>
-  <body class="min-h-screen relative dark:bg-slate-950 dark:text-slate-100">
-    <!-- Top Gradient Background (hinter alles) -->
-    <div aria-hidden class="pointer-events-none fixed inset-0 -z-20">
-      <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-[900px] rounded-full blur-3xl opacity-30 dark:opacity-20" style="background: radial-gradient(closest-side, rgba(8,47,73,.6), transparent 70%), radial-gradient(closest-side, rgba(236,72,153,.35), transparent 75%)"></div>
-    </div>
-
-    <!-- Header / Nav -->
-    <header class="sticky top-0 z-50 border-b/0">
-      <div class="glass dark:bg-white/5 dark:border-slate-800/40 border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <a href="#home" class="font-semibold text-lg flex items-center gap-2">
-              <img src="logo_1.jpg" alt="Logo" class="h-8 w-auto rounded"/>
-              <span>Gill’s Heimspiel</span>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-6 text-sm">
-              <a href="#home" class="hover:opacity-70">Start</a>
-              <a href="#menu" class="hover:opacity-70">Speisekarte</a>
-              <a href="#about" class="hover:opacity-70">Über uns</a>
-              <a href="#contact" class="hover:opacity-70">Kontakt</a>
-            </nav>
-
-            <div class="flex items-center gap-2">
-              <button id="themeBtn" class="btn btn-ghost text-sm" title="Dark/Light">🌗</button>
-              <button id="navToggle" class="md:hidden inline-flex items-center justify-center rounded-xl border px-3 py-2">Menü</button>
-            </div>
-          </div>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#hero">
+          <img src="logo_1.jpg" alt="Gill's Heimspiel Logo" />
+          <span>Gill's Heimspiel</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+          <a href="#about">Ueber uns</a>
+          <a href="#menu">Speisekarte</a>
+          <a href="#gallery">Galerie</a>
+          <a href="#contact">Kontakt</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn" href="tel:+4961369292042">Jetzt reservieren</a>
         </div>
-      </div>
-      <!-- Mobile nav -->
-      <div id="mobileNav" class="md:hidden hidden border-t bg-white/95 dark:bg-slate-900/95 backdrop-blur">
-        <div class="px-4 py-3 flex flex-col gap-3">
-          <a href="#home" class="hover:opacity-70" onclick="closeMobileNav()">Start</a>
-          <a href="#menu" class="hover:opacity-70" onclick="closeMobileNav()">Speisekarte</a>
-          <a href="#about" class="hover:opacity-70" onclick="closeMobileNav()">Über uns</a>
-          <a href="#contact" class="hover:opacity-70" onclick="closeMobileNav()">Kontakt</a>
-        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menue oeffnen">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
 
-    <!-- Hero MIT HINTERGRUNDBILD -->
-    <section id="home" class="relative min-h-[60vh]">
-      <!-- Hintergrundbild -->
-      <div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image:url('Bild1.jpeg')"></div>
-      <!-- Dunkles Overlay für Lesbarkeit -->
-      <div class="absolute inset-0 z-0 bg-black/40 dark:bg-black/50"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-10">
-        <!-- Linke Spalte: Text -->
-        <div class="w-full lg:w-1/2 reveal">
-          <div class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border mb-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
-            ⭐ Frisch · 🔥 Tandoor · 🥗 Veg & Vegan
-          </div>
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white">Indische Spezialitäten in Ober-Olm</h1>
-          <p class="mt-4 text-lg text-white/90">Vegetarisch & nicht-vegetarisch, Tandoori, Currys und mehr – frisch zubereitet vom Küchenchef.</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#menu" class="btn btn-primary">Speisekarte ansehen</a>
-            <a href="#contact" class="btn btn-primary">Jetzt reservieren</a>
-          </div>
-          <div id="openNow" class="mt-4 text-sm text-white/80"></div>
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-slide"></div>
+          <div class="hero-slide"></div>
+          <div class="hero-slide"></div>
         </div>
+        <div class="container hero-content reveal">
+          <h1>Gill's Heimspiel</h1>
+          <div class="open-pill" id="openStatus">
+            <span class="open-dot" id="openDot"></span>
+            <span class="open-note" id="openNote">Oeffnet morgen um 11:30</span>
+          </div>
+          <p class="hero-subtitle">Indisches Restaurant & Vereinsgaststaette des SV Ober-Olm.</p>
+          <p class="hero-text">
+            Tandoor-Spezialitaeten, aromatische Currys und feine Biryani – frisch gekocht mit
+            Gewuerzen aus Nord- und Suedindien.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#menu">Speisekarte ansehen</a>
+            <a class="btn secondary" href="tel:+4961369292042">Jetzt reservieren</a>
+          </div>
+        </div>
+      </section>
 
-        <!-- Rechte Spalte: RUNDES LOGO 
-        <div class="w-full lg:w-1/2 reveal flex items-center justify-center">
-          <div class="aspect-square w-56 sm:w-64 md:w-72 rounded-full border-4" style="border-color:var(--gold);">
-            <div class="w-full h-full rounded-full overflow-hidden bg-white/85 dark:bg-slate-900/85 flex items-center justify-center">
-              <img src="logo_1.jpg" alt="Gill’s Heimspiel – Logo"
-                   class="w-full h-full object-contain p-6" loading="lazy"/> 
+      <section class="section" id="signature">
+        <div class="container reveal">
+          <h2>Unsere Signatures</h2>
+          <div class="signature-grid">
+            <div class="card signature-card">
+              <img src="5334565582152005926.jpg" alt="Tandoori Platte" />
+              <h3>Tandoori Klassiker</h3>
+              <p>
+                Saftig mariniert, im Tandoor gegart und mit hausgemachten Chutneys serviert.
+              </p>
+            </div>
+            <div class="card signature-card">
+              <img src="5334565582152005927.jpg" alt="Aromatisches Biryani" />
+              <h3>Biryani & Reisgerichte</h3>
+              <p>
+                Duftender Basmati, feine Gewuerze, krosse Zwiebeln und frische Kraeuter.
+              </p>
+            </div>
+            <div class="card signature-card">
+              <img src="5334565582152005928.jpg" alt="Vegetarisches Curry" />
+              <h3>Veggie Highlights</h3>
+              <p>
+                Paneer, Linsen und Gemuesevariationen – cremig, herzhaft, einfach echt.
+              </p>
             </div>
           </div>
-        </div> -->
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- Speisekarte -->
-    <section id="menu" class="border-t bg-slate-50/60 dark:bg-slate-900/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="reveal">
-          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <h2 class="text-3xl sm:text-4xl font-bold">Speisekarte</h2>
-              <p class="mt-2 text-slate-600 dark:text-slate-300">Filter, Suche, Favoriten und Sortierung – alles in einem.</p>
+      <section class="section" id="about">
+        <div class="container reveal">
+          <h2>Willkommen bei Gill's Heimspiel</h2>
+          <p>
+            Gill's Heimspiel ist die indische Vereinsgaststaette des SV Ober-Olm – ein Ort fuer
+            Familienabende, Teamfeiern und genussvolle Abende mit Freunden.
+          </p>
+          <div class="grid about-grid">
+            <div class="card">
+              <h3>Authentische Gewuerzkuche</h3>
+              <p>
+                Von mild bis feurig: Unsere Gerichte werden frisch zubereitet, mit hausgemachten
+                Masalas und traditionellen Rezepten.
+              </p>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <div class="relative flex-1">
-                <input id="menuSearch" class="w-full border rounded-2xl px-4 py-2 pr-10 bg-white/80 dark:bg-slate-900/60" placeholder="Suche nach Gericht…" />
-                <span class="absolute right-3 top-2.5 opacity-60">🔎</span>
+            <div class="card">
+              <h3>Fuer das ganze Team</h3>
+              <p>
+                Ob Spieltag, Feier oder Dinner zu zweit – wir servieren indische Klassiker in
+                entspannter Vereinsatmosphaere.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Veggie & Vegan</h3>
+              <p>
+                Viele vegetarische und vegane Optionen mit viel Aroma, frischen Kraeutern und
+                saisonalem Gemuese.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Take-away & Catering</h3>
+              <p>
+                Wir kochen auch fuer Events. Sprecht uns an fuer Buffets, Catering oder Abholung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="menu">
+        <div class="container reveal">
+          <h2>Speisekarte</h2>
+          <p>Klicke auf die Speisekarte, um sie gross zu sehen oder lade die PDF herunter.</p>
+          <div class="menu-panel">
+            <button class="menu-thumb" type="button" data-modal-pdf="Gill´s Heimspiel Speisekarte_1.pdf">
+              <span>Speisekarte (PDF)</span>
+            </button>
+            <div class="menu-preview">
+              <object data="Gill´s Heimspiel Speisekarte_1.pdf" type="application/pdf">
+                <p>
+                  PDF kann nicht angezeigt werden.
+                  <a href="Gill´s Heimspiel Speisekarte_1.pdf" target="_blank" rel="noopener">PDF oeffnen</a>.
+                </p>
+              </object>
+            </div>
+          </div>
+          <div class="menu-note">
+            <strong>Hinweis:</strong> Frag gerne nach Schaerfegrad, Allergenen oder Tagesangeboten.
+          </div>
+          <div class="cta-row" style="margin-top: 16px;">
+            <a class="btn light" href="Gill´s Heimspiel Speisekarte_1.pdf" target="_blank" rel="noopener">PDF oeffnen</a>
+            <a class="btn primary" href="Gill´s Heimspiel Speisekarte_1.pdf" download>PDF herunterladen</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <div class="container reveal">
+          <h2>Galerie</h2>
+          <div class="gallery-slider" aria-roledescription="carousel">
+            <div class="gallery-track" id="galleryTrack">
+              <div class="gallery-slide">
+                <img src="5334565582152005929.jpg" alt="Indisches Restaurant Ambiente" />
               </div>
-              <select id="menuSort" class="border rounded-2xl px-4 py-2 bg-white/80 dark:bg-slate-900/60">
-                <option value="default">Sortierung</option>
-                <option value="price-asc">Preis ↑</option>
-                <option value="price-desc">Preis ↓</option>
-                <option value="alpha">A–Z</option>
-              </select>
-              <button id="favToggle" class="border rounded-2xl px-4 py-2">❤️ Favoriten</button>
+              <div class="gallery-slide">
+                <img src="5334565582152005930.jpg" alt="Gewuerze und indische Kueche" />
+              </div>
+              <div class="gallery-slide">
+                <img src="5334565582152005931.jpg" alt="Curry Gericht" />
+              </div>
+              <div class="gallery-slide">
+                <img src="Bild1.jpeg" alt="Tandoor und Restaurant" />
+              </div>
             </div>
           </div>
-
-          <!-- Filter -->
-          <div class="mt-6 flex flex-wrap gap-2" id="menuFilters"></div>
-
-          <!-- Menüliste -->
-          <div id="menuList" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Galerie (Lightbox) -->
-    <section class="border-t">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="reveal">
-          <h3 class="text-2xl font-semibold mb-4">Galerie</h3>
-          <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery">
-            <figure class="card overflow-hidden aspect-[4/3]">
-              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.t3oB8PYFjY0y2VKNb3OWUQHaHa?pid=Api" alt="Indische Thali mit Currys, Dips und Reis" class="w-full h-full object-cover"/>
-            </figure>
-            <figure class="card overflow-hidden aspect-[4/3]">
-              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.WdJ4XNILhDWB_WbH-sy6cQHaE7?pid=Api" alt="Indische Speisen – Biryani, Currys, Naan" class="w-full h-full object-cover"/>
-            </figure>
-            <figure class="card overflow-hidden aspect-[4/3]">
-              <img loading="lazy" src="https://tse1.mm.bing.net/th/id/OIP.Po5VyOu3FiB2AH0fAy4v_AHaDe?pid=Api" alt="Beliebte Nationalgerichte Indiens" class="w-full h-full object-cover"/>
-            </figure>
-            <figure class="card overflow-hidden aspect-[4/3]">
-              <img loading="lazy" src="https://tse2.mm.bing.net/th/id/OIP.gB_-iQwJifTuOqwVllCiqgHaG6?pid=Api" alt="Masala Dosa mit Chutney und Sambar" class="w-full h-full object-cover"/>
-            </figure>
+          <div class="gallery-controls" id="galleryDots" aria-label="Galerie Navigation">
+            <button class="gallery-dot active" type="button" aria-label="Bild 1"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 2"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 3"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 4"></button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Über uns -->
-    <section id="about" class="border-t">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="grid lg:grid-cols-2 gap-10 items-center reveal">
+      <section class="section" id="contact">
+        <div class="container contact reveal">
           <div>
-            <h2 class="text-3xl sm:text-4xl font-bold">Willkommen bei Gill’s Heimspiel</h2>
-            <p class="mt-4 text-slate-600 dark:text-slate-300">Elegantes Ambiente, köstliche Rezepte – von Chicken Tikka Masala bis Dal Makhni. Unser Erfolg liegt in Ihrer Zufriedenheit. Kommen Sie und genießen Sie es!</p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="tag">Familienfreundlich</span>
-              <span class="tag">Vegetarisch & Vegan</span>
-              <span class="tag">Tandoor-Ofen</span>
-              <span class="tag">Feiern & Catering</span>
-            </div>
-          </div>
-
-          <!-- RUNDES LOGO anstelle des Platzhalters -->
-          <div class="w-full flex items-center justify-center">
-            <div class="aspect-square w-64 md:w-72 rounded-full border-4" style="border-color:var(--gold);">
-              <div class="w-full h-full rounded-full overflow-hidden bg-white/85 dark:bg-slate-900/85 flex items-center justify-center">
-                <img src="logo_1.jpg" alt="Gill’s Heimspiel – Logo"
-                     class="w-full h-full object-contain p-6" loading="lazy"/>
+            <h2>Reservierung & Kontakt</h2>
+            <p>Wir freuen uns auf deinen Besuch im Heimspiel.</p>
+            <div class="contact-card">
+              <h3>Gill's Heimspiel</h3>
+              <ul class="contact-list">
+                <li><strong>Adresse:</strong> Am Sportpl. 2, 55270 Ober-Olm</li>
+                <li><strong>Telefon:</strong> <a href="tel:+4961369292042">+49 6136 9292042</a></li>
+                <li><strong>Vereinsgaststaette:</strong> SV Ober-Olm</li>
+                <li><strong>Oeffnungszeiten:</strong></li>
+                <li>Montag–Sonntag: 11:30–22:00</li>
+              </ul>
+              <div class="cta-row" style="margin-top: 18px;">
+                <a class="btn primary" href="tel:+4961369292042">Jetzt anrufen</a>
+                <a class="btn light" href="#menu">Speisekarte ansehen</a>
               </div>
             </div>
           </div>
+          <div class="portrait">
+            <img src="logo_1.jpg" alt="Gill's Heimspiel Logo" />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FAQ -->
-    <section class="border-t bg-slate-50/60 dark:bg-slate-900/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal">
-        <h3 class="text-2xl font-semibold">FAQ</h3>
-        <details class="mt-4 card p-4"><summary class="font-medium cursor-pointer">Gibt es vegane Optionen?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Ja, viele – z. B. Dal, Baingan, vegane Currys. Achten Sie auf das Badge „vegan“.</p></details>
-        <details class="mt-3 card p-4"><summary class="font-medium cursor-pointer">Liefert ihr auch?</summary><p class="mt-2 text-slate-600 dark:text-slate-300">Auf Anfrage im Umkreis – oder als Catering für Events.</p></details>
-      </div>
-    </section>
-
-    <!-- Kontakt / Reservierung -->
-    <section id="contact" class="border-t">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="grid lg:grid-cols-2 gap-10 items-start reveal">
-          <div>
-            <h2 class="text-3xl sm:text-4xl font-bold">Kontakt & Reservierung</h2>
-            <ul class="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
-              <li><strong>Telefon:</strong> <a class="underline" href="tel:+49">+49 …</a></li>
-              <li><strong>E-Mail:</strong> <a class="underline" href="mailto:info@">info@…</a></li>
-              <li><strong>Adresse:</strong> Am Sportpl. 2, 55270 Ober-Olm</li>
-              <li><strong>Öffnungszeiten:</strong> Mo–So 11:30–22:00</li>
-            </ul>
-            <!-- Google Maps Embed -->
-            <div class="mt-8 rounded-3xl overflow-hidden border">
-              <iframe
-                title="Gill’s Heimspiel – Lage"
-                src="https://www.google.com/maps?q=Am%20Sportpl.%202,%2055270%20Ober-Olm&output=embed"
-                width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <section class="section" id="reviews">
+        <div class="container reveal">
+          <div class="card">
+            <h2>Bewertungen</h2>
+            <p>Deine Meinung hilft uns. Teile deine Erfahrung und entdecke neue Empfehlungen.</p>
+            <div class="cta-row" style="margin-top: 12px;">
+              <a class="btn primary" href="#contact">Bewertung abgeben</a>
             </div>
           </div>
-
-          <form id="contactForm" class="card p-6">
-            <h3 class="text-xl font-semibold">Kurze Anfrage</h3>
-            <div class="mt-4 grid sm:grid-cols-2 gap-4">
-              <div class="sm:col-span-1">
-                <label class="block text-sm mb-1">Name</label>
-                <input name="name" required type="text" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="Ihr Name" />
-              </div>
-              <div class="sm:col-span-1">
-                <label class="block text-sm mb-1">E-Mail</label>
-                <input name="email" required type="email" class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" placeholder="name@mail.de" />
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-sm mb-1">Nachricht</label>
-                <textarea name="message" required class="w-full border rounded-xl px-3 py-2 bg-white/80 dark:bg-slate-900/60" rows="5" placeholder="Ihre Anfrage…"></textarea>
-              </div>
-              <div class="sm:col-span-2">
-                <label class="inline-flex items-center gap-2 text-sm"><input type="checkbox" required class="border"/> Ich stimme der Datenverarbeitung zu.</label>
-              </div>
-            </div>
-            <button class="mt-4 btn btn-primary w-full" type="submit">Senden</button>
-            <p class="mt-2 text-xs text-slate-500">(Statisch. Für echten Versand z. B. Formspree/Netlify verwenden.)</p>
-          </form>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="border-t">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-3">
-        <p>© <span id="year"></span> Gill’s Heimspiel · Alle Rechte vorbehalten.</p>
-        <div class="flex gap-4">
-          <a href="#" class="underline">Impressum</a>
-          <a href="#" class="underline">Datenschutz</a>
+      <section class="section" id="highlights">
+        <div class="container reveal">
+          <div class="highlights">
+            <div class="highlight-item"><span class="mark mark-dot"></span>Tandoor-Ofen</div>
+            <div class="highlight-item"><span class="mark mark-square"></span>Frische Gewuerze</div>
+            <div class="highlight-item"><span class="mark mark-diamond"></span>Vereinsheim-Atmosphaere</div>
+            <div class="highlight-item"><span class="mark mark-ring"></span>Veggie & Vegan</div>
+          </div>
         </div>
+      </section>
+
+      <section class="section" id="impressum">
+        <div class="container reveal">
+          <div class="card">
+            <h2>Impressum</h2>
+            <p><strong>Angaben gemaess § 5 TMG</strong></p>
+            <p>
+              Gill's Heimspiel<br />
+              Am Sportpl. 2<br />
+              55270 Ober-Olm
+            </p>
+            <p>
+              <strong>Vertreten durch:</strong><br />
+              Inhaber: [Name eintragen]
+            </p>
+            <p>
+              <strong>Kontakt</strong><br />
+              Telefon: +49 6136 9292042<br />
+              E-Mail: gills-heimspiel@gmail.com
+            </p>
+            <p>
+              <strong>Umsatzsteuer-ID</strong><br />
+              Umsatzsteuer-Identifikationsnummer gemaess §27 a Umsatzsteuergesetz: [UID eintragen]
+            </p>
+            <p>
+              <strong>Verantwortlich fuer den Inhalt nach § 55 Abs. 2 RStV</strong><br />
+              [Name eintragen], Am Sportpl. 2, 55270 Ober-Olm
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="datenschutz">
+        <div class="container reveal">
+          <div class="card">
+            <h2>Datenschutzerklaerung</h2>
+            <p>
+              <strong>1. Datenschutz auf einen Blick</strong><br />
+              Diese Hinweise geben einen einfachen Ueberblick darueber, was mit Ihren
+              personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene
+              Daten sind alle Daten, mit denen Sie persoenlich identifiziert werden koennen.
+            </p>
+            <p>
+              <strong>2. Verantwortlicher</strong><br />
+              Gill's Heimspiel, Am Sportpl. 2, 55270 Ober-Olm<br />
+              Telefon: +49 6136 9292042<br />
+              E-Mail: gills-heimspiel@gmail.com
+            </p>
+            <p>
+              <strong>3. Erhebung und Speicherung personenbezogener Daten</strong><br />
+              Beim Aufrufen dieser Website werden durch den Browser automatisch Informationen an
+              den Server gesendet (z. B. IP-Adresse, Datum/Uhrzeit, Browsertyp). Diese Daten werden
+              zur Gewaehrleistung eines reibungslosen Verbindungsaufbaus und der Systemsicherheit
+              verarbeitet.
+            </p>
+            <p>
+              <strong>4. Kontaktaufnahme</strong><br />
+              Wenn Sie uns per E-Mail oder Telefon kontaktieren, speichern wir Ihre Angaben zur
+              Bearbeitung der Anfrage. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+            </p>
+            <p>
+              <strong>5. Ihre Rechte</strong><br />
+              Sie haben das Recht auf Auskunft, Berichtigung, Loeschung, Einschraenkung der
+              Verarbeitung, Datenuebertragbarkeit sowie Widerspruch gegen die Verarbeitung Ihrer
+              personenbezogenen Daten. Ausserdem steht Ihnen ein Beschwerderecht bei der zustaendigen
+              Aufsichtsbehoerde zu.
+            </p>
+            <p>
+              <strong>6. Externe Links</strong><br />
+              Diese Website kann Links zu externen Webseiten enthalten. Fuer die Inhalte externer
+              Anbieter uebernehmen wir keine Haftung.
+            </p>
+            <p>
+              <strong>7. Stand</strong><br />
+              [Monat Jahr]
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          © <span id="year"></span> Gill's Heimspiel · Am Sportpl. 2, 55270 Ober-Olm · Kontakt: +49 6136 9292042
+        </p>
+        <p><a href="#datenschutz">Datenschutz</a> · <a href="#impressum">Impressum</a></p>
       </div>
     </footer>
 
-    <!-- Lightbox Modal -->
-    <dialog id="lightbox" class="backdrop:bg-black/70 rounded-2xl p-0 w-11/12 max-w-3xl">
-      <img id="lightboxImg" alt="Galerie Bild" class="w-full h-auto"/>
-      <button class="btn btn-ghost w-full" onclick="lightbox.close()">Schließen</button>
-    </dialog>
-
-    <!-- Back to Top -->
-    <button id="toTop" class="fixed bottom-6 right-6 hidden btn btn-ghost shadow-lg">↑ Top</button>
-
-    <!-- Toast -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden px-4 py-2 rounded-xl bg-black text-white text-sm"></div>
-
-    <!-- Cookie / Info Banner -->
-    <div id="cookie" class="fixed inset-x-0 bottom-0 p-4 md:p-6 hidden">
-      <div class="card p-4 md:p-5 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-3">
-        <p class="text-sm text-slate-600 dark:text-slate-300">Diese Website verwendet nur technisch notwendige Cookies.</p>
-        <button class="btn btn-primary" onclick="dismissCookie()">Verstanden</button>
+    <div class="modal" id="menuModal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" type="button" id="menuModalClose">Schliessen</button>
+        <iframe src="" title="Speisekarte PDF" id="menuModalFrame"></iframe>
       </div>
     </div>
 
     <script>
-      // ===== Utilities =====
-      const $ = (s, r=document) => r.querySelector(s);
-      const $$ = (s, r=document) => [...r.querySelectorAll(s)];
-      const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'), 2000); };
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
 
-      // Year in footer
-      $('#year').textContent = new Date().getFullYear();
-
-      // Theme toggle (Dark/Light)
-      const themeBtn = $('#themeBtn');
-      function applyTheme(){ document.documentElement.classList.toggle('dark', localStorage.theme === 'dark'); }
-      themeBtn.addEventListener('click', ()=>{ localStorage.theme = localStorage.theme==='dark'?'light':'dark'; applyTheme(); });
-      if(!localStorage.theme){ localStorage.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'; }
-      applyTheme();
-
-      // Mobile Nav
-      const navToggle = $('#navToggle');
-      const mobileNav = $('#mobileNav');
-      function closeMobileNav(){ mobileNav.classList.add('hidden'); }
-      navToggle?.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
-
-      // Reveal on scroll
-      if ('IntersectionObserver' in window){
-        const io = new IntersectionObserver((ents)=>{
-          for(const e of ents){ if(e.isIntersecting) e.target.classList.add('show'); }
-        },{threshold:.1});
-        $$('.reveal').forEach(el=> io.observe(el));
-      } else {
-        // Fallback: show immediately
-        $$('.reveal').forEach(el=> el.classList.add('show'));
-      }
-
-      // Open now indicator (simple hours model)
-      const hours = { open: 11.5, close: 22.0 }; // 11:30 - 22:00
-      (function(){
-        const now = new Date(); const h = now.getHours() + now.getMinutes()/60;
-        const open = h>=hours.open && h<=hours.close;
-        $('#openNow').innerHTML = open ? '🟢 Gerade geöffnet' : '🔴 Derzeit geschlossen';
-      })();
-
-      // ===== MENU DATA & FEATURES =====
-      const categories = [
-        { id: 'vorspeisen', name: 'Warme Vorspeisen' },
-        { id: 'beilagen', name: 'Beilagen' },
-        { id: 'tandoori', name: 'Tandoori Spezialitäten' },
-        { id: 'haehnchen', name: 'Hähnchen Spezialitäten' },
-        { id: 'lamm', name: 'Lamm Spezialitäten' },
-        { id: 'fisch', name: 'Fisch & Garnelen' },
-        { id: 'biryani', name: 'Biryanis' },
-        { id: 'veg', name: 'Vegetarisch & Vegan' },
-        { id: 'burger', name: 'Burger' },
-        { id: 'schnitzel', name: 'Schnitzel' },
-        { id: 'salat', name: 'Salate' },
-      ];
-
-      const items = [
-        { id:1, cat:'vorspeisen', title:'Dal Soup', vegan:true, desc:'Pürierte Linsensuppe', price:6.5 },
-        { id:2, cat:'vorspeisen', title:'Paneer Pakoras', veg:true, desc:'Hausgemachter Käse im Kichererbsenteig', price:7.5 },
-        { id:3, cat:'vorspeisen', title:'Jeengha Pakoras', spicy:true, desc:'Riesengarnelen in Kichererbsenteig', price:8.9 },
-        { id:4, cat:'vorspeisen', title:'Chicken Pakoras', desc:'Hähnchenbrustfilet in Kichererbsenteig', price:7.9 },
-        { id:5, cat:'beilagen', title:'Tandoori Naan', desc:'Naan mit hausgemachter Butter', price:2.9 },
-        { id:6, cat:'beilagen', title:'Garlic Naan', desc:'Naan mit Knoblauch', price:3.5 },
-        { id:7, cat:'beilagen', title:'Masala Naan', desc:'Gewürze, Koriander, Kümmel, Knoblauch', price:3.5 },
-        { id:8, cat:'tandoori', title:'Shanshahi Murgh Tikka', desc:'Hähnchenbrust, Joghurt & Safran', price:20.9 },
-        { id:9, cat:'tandoori', title:'Murgh Malai Tikka', desc:'Hähnchenbrust, Sahne & milde Gewürze', price:20.9 },
-        { id:10, cat:'tandoori', title:'Tandoori Lamm Tikka', spicy:true, desc:'Lammhüfte in Joghurt & Gewürzen', price:22.9 },
-        { id:11, cat:'fisch', title:'Tandoori Jeengha', desc:'Riesengarnelen in südindischen Gewürzen', price:22.9 },
-        { id:12, cat:'haehnchen', title:'Murgh Sahi Korma', desc:'Sahne, Cashew, Kokos, Mandeln', price:17.9 },
-        { id:13, cat:'haehnchen', title:'Tandoori Murgh Masala', desc:'Gegrilltes Hähnchen, Tomaten-Sahne', price:19.9 },
-        { id:14, cat:'haehnchen', title:'Butter Chicken Tandoori', desc:'Sahnige Butter-Tomate', price:18.9 },
-        { id:15, cat:'lamm', title:'Lamb Shahi Korma', desc:'Aromatische Sahne-Currysoße', price:18.9 },
-        { id:16, cat:'lamm', title:'Tandoori Lamb Masala', desc:'Gegrillte Lammhüfte in Masala', price:20.9 },
-        { id:17, cat:'lamm', title:'Karahi Gost', spicy:true, desc:'Ingwer, Knoblauch, Tomaten', price:19.9 },
-        { id:18, cat:'fisch', title:'Machi Korma', desc:'Seelachsfilet, delikate Currysoße', price:19.9 },
-        { id:19, cat:'fisch', title:'Machi Karahi', desc:'Seelachs, Tomaten, Ingwer, Knoblauch', price:19.9 },
-        { id:20, cat:'biryani', title:'Murgh Biryani', desc:'Hähnchen, Basmati, Gewürze, Rosinen, Nüsse', price:17.9 },
-        { id:21, cat:'biryani', title:'Jeengha Biryani', desc:'Riesengarnelen, Basmati & Gewürze', price:19.9 },
-        { id:22, cat:'veg', title:'Baingan Bhartha', vegan:true, desc:'Gegrillte Aubergine, Tomaten, Zwiebeln, Masala', price:16.9 },
-        { id:23, cat:'veg', title:'Special Dal Makhni', veg:true, desc:'Schwarze Linsen, Butter & Sahne', price:16.9 },
-        { id:24, cat:'veg', title:'Palak Paneer', veg:true, desc:'Spinat mit hausgemachtem Käse', price:17.5 },
-        { id:25, cat:'burger', title:'American Classic Beef-Burger', desc:'Mit Pommes inklusive', price:14.9 },
-        { id:26, cat:'burger', title:'Indian Chicken Tikka-Burger', desc:'Mit Tikka-Sauce & Pommes', price:15.9 },
-        { id:27, cat:'schnitzel', title:'Schnitzel Wiener Art', desc:'Mit Zitrone & Petersilie (inkl. Pommes)', price:14.9 },
-        { id:28, cat:'salat', title:'Gemischter Salat (Haus)', vegan:true, desc:'Tomaten, Gurken, Paprika, Oliven …', price:10.9 },
-        { id:29, cat:'salat', title:'Tandoori Chicken Salat', desc:'Chicken aus dem Tandoor, Gemüse', price:14.9 },
-      ];
-
-      const filtersEl = $('#menuFilters');
-      const listEl = $('#menuList');
-      const searchEl = $('#menuSearch');
-      const sortEl = $('#menuSort');
-      const favToggle = $('#favToggle');
-      let active = 'alle';
-      let showFav = false;
-      const favs = new Set(JSON.parse(localStorage.getItem('favs')||'[]'));
-      const saveFavs = ()=>localStorage.setItem('favs', JSON.stringify([...favs]));
-
-      function renderFilters(){
-        filtersEl.innerHTML = '';
-        const mkBtn = (id,label)=>{ const b=document.createElement('button'); b.className = btnClass(id); b.textContent=label; b.onclick=()=>{active=id; render();}; return b; };
-        filtersEl.appendChild(mkBtn('alle','Alle'));
-        for(const c of categories){ filtersEl.appendChild(mkBtn(c.id,c.name)); }
-        filtersEl.appendChild(mkBtn('vegan','Vegan')); filtersEl.appendChild(mkBtn('veg','Vegetarisch'));
-        filtersEl.appendChild(mkBtn('spicy','Scharf'));
-      }
-
-      // GOLD-Stil für Filter-Buttons (Light: Weiß/Gold, Dark: Schwarz/Gold)
-      function btnClass(id){
-        const base = 'px-3 py-2 rounded-2xl text-sm border transition';
-        const activeCls = 'bg-white text-[#111] border-[var(--gold)] text-[var(--gold)] dark:bg-black dark:text-[var(--gold)] dark:border-[var(--gold)] shadow';
-        const normal = 'bg-transparent text-slate-800 border-[var(--gold)] hover:bg-[var(--gold)] hover:text-white dark:text-[var(--gold)] dark:border-[var(--gold)] dark:hover:bg-[var(--gold)] dark:hover:text-black';
-        return `${base} ${active===id?activeCls:normal}`;
-      }
-
-      function render(){
-        try{
-          let q = (searchEl?.value||'').toLowerCase();
-          let data = items.filter(i=>{
-            if(showFav && !favs.has(i.id)) return false;
-            if(active==='alle') return true;
-            if(['vegan','veg','spicy'].includes(active)) return !!i[active];
-            return i.cat===active;
-          }).filter(i=> i.title.toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q));
-
-          switch (sortEl?.value){
-            case 'price-asc': data.sort((a,b)=>a.price-b.price); break;
-            case 'price-desc': data.sort((a,b)=>b.price-a.price); break;
-            case 'alpha': data.sort((a,b)=> (a.title > b.title) - (a.title < b.title)); break;
-          }
-
-          listEl.innerHTML = '';
-          for(const i of data){
-            const card = document.createElement('article');
-            card.className = 'card p-5 flex flex-col';
-            const badges = [ i.vegan?'<span class="tag">vegan</span>':'', i.veg?'<span class="tag">vegetarisch</span>':'', i.spicy?'<span class="tag">🌶️ scharf</span>':'' ].filter(Boolean).join(' ');
-            const fav = favs.has(i.id) ? '❤️' : '🤍';
-            card.innerHTML = `
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <h4 class="font-semibold text-lg">${i.title}</h4>
-                  <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">${i.desc||''}</p>
-                  <div class="flex flex-wrap gap-2 mt-2">${badges}</div>
-                </div>
-                <div class="text-right">
-                  <div class="font-semibold whitespace-nowrap price">${i.price.toFixed(2).replace('.',',')}€</div>
-                  <button aria-label="Favorit" class="mt-2" data-id="${i.id}">${fav}</button>
-                </div>
-              </div>`;
-            listEl.appendChild(card);
-          }
-
-          // favorite buttons
-          $$('button[data-id]', listEl).forEach(b=> b.onclick = ()=>{ const id=Number(b.dataset.id); if(favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); render(); toast('Aktualisiert'); });
-        } catch (err){
-          console.error(err);
-          listEl.innerHTML = '<div class="text-center text-slate-500">Fehler beim Laden der Speisekarte. Bitte Seite neu laden.</div>';
-        }
-      }
-
-      searchEl?.addEventListener('input', render);
-      sortEl?.addEventListener('change', render);
-      favToggle?.addEventListener('click', ()=>{ showFav=!showFav; favToggle.classList.toggle('bg-slate-900'); favToggle.classList.toggle('text-white'); render(); });
-
-      renderFilters();
-      render();
-
-      // ===== Gallery Lightbox =====
-      const lb = $('#lightbox'); const lbImg = $('#lightboxImg');
-      document.getElementById('gallery').addEventListener('click', e=>{
-        const img = e.target.closest('img'); if(!img) return;
-        lbImg.src = img.src;
-        lb.showModal();
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
       });
 
-      // Back to top
-      const toTop = $('#toTop');
-      window.addEventListener('scroll', ()=>{ toTop.classList.toggle('hidden', window.scrollY < 400); });
-      toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => navLinks.classList.remove("open"));
+      });
 
-      // Cookie banner (simple)
-      function dismissCookie(){ localStorage.cookieOK = '1'; $('#cookie').classList.add('hidden'); }
-      window.dismissCookie = dismissCookie;
-      if(!localStorage.cookieOK) $('#cookie').classList.remove('hidden');
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
 
-      // Contact form validation (demo)
-      $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); toast('Danke! Wir melden uns zeitnah.'); e.target.reset(); });
+      reveals.forEach((el) => observer.observe(el));
 
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const openDot = document.getElementById("openDot");
+      const openNote = document.getElementById("openNote");
+      const now = new Date();
+      const hour = now.getHours() + now.getMinutes() / 60;
+      const isOpen = hour >= 11.5 && hour < 22;
+
+      if (!isOpen) {
+        openDot.classList.add("closed");
+        openNote.style.display = "block";
+      }
+
+      const galleryTrack = document.getElementById("galleryTrack");
+      const galleryDots = Array.from(document.querySelectorAll("#galleryDots .gallery-dot"));
+      let galleryIndex = 0;
+      let galleryTimer;
+
+      const setGalleryIndex = (index) => {
+        galleryIndex = index % galleryDots.length;
+        galleryTrack.style.transform = `translateX(-${galleryIndex * 100}%)`;
+        galleryDots.forEach((dot, idx) => {
+          dot.classList.toggle("active", idx === galleryIndex);
+        });
+      };
+
+      const startGalleryAuto = () => {
+        galleryTimer = setInterval(() => {
+          setGalleryIndex((galleryIndex + 1) % galleryDots.length);
+        }, 4000);
+      };
+
+      galleryDots.forEach((dot, idx) => {
+        dot.addEventListener("click", () => {
+          clearInterval(galleryTimer);
+          setGalleryIndex(idx);
+          startGalleryAuto();
+        });
+      });
+
+      setGalleryIndex(0);
+      startGalleryAuto();
+
+      const menuModal = document.getElementById("menuModal");
+      const menuModalFrame = document.getElementById("menuModalFrame");
+      const menuModalClose = document.getElementById("menuModalClose");
+
+      document.querySelectorAll(".menu-thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          menuModalFrame.src = thumb.getAttribute("data-modal-pdf");
+          menuModal.classList.add("open");
+          menuModal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      const closeMenuModal = () => {
+        menuModal.classList.remove("open");
+        menuModal.setAttribute("aria-hidden", "true");
+        menuModalFrame.src = "";
+      };
+
+      menuModalClose.addEventListener("click", closeMenuModal);
+      menuModal.addEventListener("click", (event) => {
+        if (event.target === menuModal) {
+          closeMenuModal();
+        }
+      });
     </script>
   </body>
 </html>
