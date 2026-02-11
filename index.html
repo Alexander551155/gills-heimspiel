@@ -265,7 +265,8 @@
       }
 
       .hero-subtitle {
-        font-size: 0.92rem;
+        font-size: 1.05rem;
+        text-align: center;
       }
 
       .hero-text {
@@ -304,7 +305,7 @@
       .open-note {
         font-size: 0.58rem;
         color: rgba(255, 255, 255, 0.9);
-        display: none;
+        display: inline-block;
         text-shadow: 0 0 10px rgba(255, 210, 180, 0.7);
       }
 
@@ -579,6 +580,27 @@
         align-items: center;
       }
 
+      .map-panel {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: stretch;
+      }
+
+      .map-embed {
+        width: 100%;
+        min-height: 320px;
+        border: 0;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .map-note {
+        font-size: 0.86rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
       .contact-card {
         background: #fff;
         border-radius: var(--radius);
@@ -816,9 +838,9 @@
           <h1>Gill's Heimspiel</h1>
           <div class="open-pill" id="openStatus">
             <span class="open-dot" id="openDot"></span>
-            <span class="open-note" id="openNote">Oeffnet morgen um 11:30</span>
+            <span class="open-note" id="openNote">Status wird geladen</span>
           </div>
-          <p class="hero-subtitle">Indisches Restaurant & Vereinsgaststaette des SV Ober-Olm.</p>
+          <p class="hero-subtitle">Indisches Restaurant in Ober-Olm.</p>
           <p class="hero-text">
             Tandoor-Spezialitaeten, aromatische Currys und feine Biryani – frisch gekocht mit
             Gewuerzen aus Nord- und Suedindien.
@@ -863,8 +885,8 @@
         <div class="container reveal">
           <h2>Willkommen bei Gill's Heimspiel</h2>
           <p>
-            Gill's Heimspiel ist die indische Vereinsgaststaette des SV Ober-Olm – ein Ort fuer
-            Familienabende, Teamfeiern und genussvolle Abende mit Freunden.
+            Gill's Heimspiel ist ein Ort fuer Familienabende, Teamfeiern und genussvolle Abende
+            mit Freunden.
           </p>
           <div class="grid about-grid">
             <div class="card">
@@ -968,9 +990,11 @@
               <ul class="contact-list">
                 <li><strong>Adresse:</strong> Am Sportpl. 2, 55270 Ober-Olm</li>
                 <li><strong>Telefon:</strong> <a href="tel:+4961369292042">+49 6136 9292042</a></li>
-                <li><strong>Vereinsgaststaette:</strong> SV Ober-Olm</li>
                 <li><strong>Oeffnungszeiten:</strong></li>
-                <li>Montag–Sonntag: 11:30–22:00</li>
+                <li>Montag: geschlossen</li>
+                <li>Dienstag–Freitag: 17:00–22:00</li>
+                <li>Samstag: 11:00–14:30, 17:00–22:00</li>
+                <li>Sonntag: 11:00–14:30, 17:00–22:00</li>
               </ul>
               <div class="cta-row" style="margin-top: 18px;">
                 <a class="btn primary" href="tel:+4961369292042">Jetzt anrufen</a>
@@ -980,6 +1004,39 @@
           </div>
           <div class="portrait">
             <img src="logo_1.jpg" alt="Gill's Heimspiel Logo" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="map">
+        <div class="container reveal">
+          <h2>Anfahrt</h2>
+          <div class="map-panel">
+            <div class="card">
+              <h3>Adresse</h3>
+              <p>Am Sportpl. 2, 55270 Ober-Olm</p>
+              <p class="map-note">
+                Sie erreichen uns bequem mit dem ÖPNV; kostenlose Parkplätze sind direkt vor Ort.
+              </p>
+              <div class="cta-row" style="margin-top: 12px;">
+                <a
+                  class="btn light"
+                  href="https://www.google.com/maps?q=Am%20Sportpl.%202,%2055270%20Ober-Olm"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Route in Google Maps
+                </a>
+              </div>
+            </div>
+            <iframe
+              class="map-embed"
+              title="Google Maps Karte"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Am%20Sportpl.%202,%2055270%20Ober-Olm&output=embed"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </section>
@@ -1047,12 +1104,70 @@
       const openDot = document.getElementById("openDot");
       const openNote = document.getElementById("openNote");
       const now = new Date();
-      const hour = now.getHours() + now.getMinutes() / 60;
-      const isOpen = hour >= 11.5 && hour < 22;
+      const dayNames = [
+        "Sonntag",
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+      ];
+      const schedule = {
+        0: [
+          [11 * 60, 14 * 60 + 30],
+          [17 * 60, 22 * 60],
+        ],
+        1: [],
+        2: [[17 * 60, 22 * 60]],
+        3: [[17 * 60, 22 * 60]],
+        4: [[17 * 60, 22 * 60]],
+        5: [[17 * 60, 22 * 60]],
+        6: [
+          [11 * 60, 14 * 60 + 30],
+          [17 * 60, 22 * 60],
+        ],
+      };
+      const minutesNow = now.getHours() * 60 + now.getMinutes();
+      const todaySlots = schedule[now.getDay()] || [];
+      const openSlot = todaySlots.find(
+        ([start, end]) => minutesNow >= start && minutesNow < end
+      );
 
-      if (!isOpen) {
+      const formatTime = (minutes) => {
+        const h = Math.floor(minutes / 60);
+        const m = minutes % 60;
+        return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+      };
+
+      if (openSlot) {
+        openNote.textContent = `Geöffnet bis ${formatTime(openSlot[1])}`;
+      } else {
         openDot.classList.add("closed");
-        openNote.style.display = "block";
+
+        const nextToday = todaySlots.find(([start]) => start > minutesNow);
+        if (nextToday) {
+          openNote.textContent = `Öffnet heute um ${formatTime(nextToday[0])}`;
+        } else {
+          let nextSlot = null;
+          let dayOffset = 1;
+          while (dayOffset <= 7 && !nextSlot) {
+            const nextDay = (now.getDay() + dayOffset) % 7;
+            const slots = schedule[nextDay] || [];
+            if (slots.length > 0) {
+              nextSlot = { day: nextDay, start: slots[0][0] };
+            } else {
+              dayOffset += 1;
+            }
+          }
+
+          if (nextSlot) {
+            const dayLabel = dayOffset === 1 ? "morgen" : `am ${dayNames[nextSlot.day]}`;
+            openNote.textContent = `Öffnet ${dayLabel} um ${formatTime(nextSlot.start)}`;
+          } else {
+            openNote.textContent = "Zurzeit geschlossen";
+          }
+        }
       }
 
       const galleryTrack = document.getElementById("galleryTrack");
