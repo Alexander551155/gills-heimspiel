@@ -285,8 +285,9 @@
         border: 1px solid rgba(255, 255, 255, 0.35);
         width: fit-content;
         position: absolute;
-        top: 12px;
-        right: 12px;
+        top: 8px;
+        right: 8px;
+        z-index: 2;
       }
 
       .open-dot {
@@ -993,8 +994,8 @@
                 <li><strong>Oeffnungszeiten:</strong></li>
                 <li>Montag: geschlossen</li>
                 <li>Dienstag–Freitag: 17:00–22:00</li>
-                <li>Samstag: 11:00–14:30, 17:00–22:00</li>
-                <li>Sonntag: 11:00–14:30, 17:00–22:00</li>
+                <li>Samstag: 11:30–14:30, 17:00–22:00</li>
+                <li>Sonntag: 11:30–14:30, 17:00–22:00</li>
               </ul>
               <div class="cta-row" style="margin-top: 18px;">
                 <a class="btn primary" href="tel:+4961369292042">Jetzt anrufen</a>
@@ -1115,7 +1116,7 @@
       ];
       const schedule = {
         0: [
-          [11 * 60, 14 * 60 + 30],
+          [11 * 60 + 30, 14 * 60 + 30],
           [17 * 60, 22 * 60],
         ],
         1: [],
@@ -1124,7 +1125,7 @@
         4: [[17 * 60, 22 * 60]],
         5: [[17 * 60, 22 * 60]],
         6: [
-          [11 * 60, 14 * 60 + 30],
+          [11 * 60 + 30, 14 * 60 + 30],
           [17 * 60, 22 * 60],
         ],
       };
