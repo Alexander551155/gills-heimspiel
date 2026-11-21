@@ -6,7 +6,7 @@
     <title>Gill's Heimspiel – Indisches Restaurant in Ober-Olm</title>
     <meta
       name="description"
-      content="Indische Spezialitaeten, Tandoor und Biryani in Ober-Olm. Gill's Heimspiel – Vereinsgaststaette des SV Ober-Olm."
+      content="Gill’s Heimspiel in Ober-Olm serviert indische Currys, Tandoori-Spezialitäten, Biryanis und Heimspiel-Klassiker wie Burger und Schnitzel."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -392,94 +392,37 @@
         margin-bottom: 12px;
       }
 
+      .welcome-copy {
+        max-width: 68ch;
+        margin-bottom: 20px;
+      }
+
+      .welcome-copy p + p {
+        margin-top: 12px;
+      }
+
       .about-grid {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       }
 
+      .menu-open {
+        margin-top: 12px;
+      }
+
       .menu-panel {
         display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        align-items: stretch;
+        align-items: start;
       }
 
-      .menu-thumb {
-        position: relative;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        cursor: pointer;
-        transition: transform 0.2s ease;
-        background: #f6efe7;
-        border: 1px solid rgba(162, 58, 31, 0.15);
-        min-height: 220px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .menu-card {
+        scroll-margin-top: 90px;
       }
 
-      .menu-thumb__frame {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .menu-thumb object,
-      .menu-thumb iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
-        pointer-events: none;
-      }
-
-      .menu-placeholder {
-        color: var(--muted);
-        font-size: 0.95rem;
-        padding: 0 18px;
-        text-align: center;
-      }
-
-      .menu-thumb span {
-        position: absolute;
-        left: 16px;
-        bottom: 16px;
-        background: rgba(27, 21, 18, 0.78);
-        color: #fff;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 0.9rem;
-      }
-
-      .menu-thumb:hover,
-      .menu-thumb:focus-visible {
-        transform: translateY(-4px);
-      }
-
-      .menu-preview {
-        border-radius: 18px;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid rgba(162, 58, 31, 0.15);
-        box-shadow: var(--shadow);
-      }
-
-      .menu-preview object,
-      .menu-preview iframe {
-        width: 100%;
-        height: 360px;
-        border: 0;
-        display: block;
-        background: #fff;
-      }
-
-      .menu-note {
-        margin-top: 10px;
-        padding: 20px 24px;
-        border-radius: 18px;
-        border: 1px solid rgba(162, 58, 31, 0.2);
-        background: rgba(255, 255, 255, 0.6);
+      .menu-card h3 {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.85rem;
       }
 
       .gallery-slider {
@@ -644,51 +587,6 @@
         transform: translateY(0);
       }
 
-      .modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 10, 8, 0.8);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 30px;
-        z-index: 50;
-      }
-
-      .modal.open {
-        display: flex;
-      }
-
-      .modal-content {
-        max-width: min(900px, 92vw);
-        width: 100%;
-        max-height: 86vh;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        background: #f7f2ec;
-        position: relative;
-      }
-
-      .modal-content iframe {
-        width: 100%;
-        height: 78vh;
-        border: 0;
-      }
-
-      .modal-close {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(27, 21, 18, 0.85);
-        color: #fff;
-        border: 0;
-        border-radius: 999px;
-        padding: 6px 12px;
-        cursor: pointer;
-        font-size: 0.9rem;
-      }
-
       @media (max-width: 900px) {
         .gallery-slide {
           height: 260px;
@@ -787,11 +685,6 @@
           grid-template-columns: 1fr;
         }
 
-        .menu-preview object,
-        .menu-preview iframe {
-          height: 280px;
-        }
-
         .gallery-slide {
           height: 220px;
         }
@@ -815,7 +708,8 @@
         </a>
         <nav class="nav-links" id="navLinks">
           <a href="#about">Über uns</a>
-          <a href="#menu">Speisekarte</a>
+          <a href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte</a>
+          <a href="Gills_Heimspiel_Getraenkekarte_v7.pdf">Getränkekarte</a>
           <a href="#gallery">Galerie</a>
           <a href="#contact">Kontakt</a>
         </nav>
@@ -836,85 +730,82 @@
           <div class="hero-slide"></div>
         </div>
         <div class="container hero-content reveal">
-          <h1>Gill's Heimspiel</h1>
+          <h1>Gill’s Heimspiel</h1>
           <div class="open-pill" id="openStatus">
             <span class="open-dot" id="openDot"></span>
             <span class="open-note" id="openNote">Status wird geladen</span>
           </div>
-          <p class="hero-subtitle">Indisches Restaurant in Ober-Olm.</p>
-          <p class="hero-text">
-            Tandoor-Spezialitaeten, aromatische Currys und feine Biryani – frisch gekocht mit
-            Gewuerzen aus Nord- und Suedindien.
-          </p>
+          <p class="hero-subtitle">Ein Stück Indien im Herzen von Ober-Olm.</p>
+          <p class="hero-text">Indische Küche und Heimspiel-Klassiker. Authentisch. Frisch. Mit Leidenschaft.</p>
           <div class="cta-row">
-            <a class="btn primary" href="#menu">Speisekarte ansehen</a>
+            <a class="btn primary" href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte öffnen</a>
             <a class="btn secondary" href="tel:+4961369292042">Jetzt reservieren</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="signature">
-        <div class="container reveal">
-          <h2>Unsere Signatures</h2>
-          <div class="signature-grid">
-            <div class="card signature-card">
-              <img src="5334565582152005926.jpg" alt="Tandoori Platte" />
-              <h3>Tandoori Klassiker</h3>
-              <p>
-                Saftig mariniert, im Tandoor gegart und mit hausgemachten Chutneys serviert.
-              </p>
-            </div>
-            <div class="card signature-card">
-              <img src="5334565582152005927.jpg" alt="Aromatisches Biryani" />
-              <h3>Biryani & Reisgerichte</h3>
-              <p>
-                Duftender Basmati, feine Gewuerze, krosse Zwiebeln und frische Kraeuter.
-              </p>
-            </div>
-            <div class="card signature-card">
-              <img src="5334565582152005928.jpg" alt="Vegetarisches Curry" />
-              <h3>Veggie Highlights</h3>
-              <p>
-                Paneer, Linsen und Gemuesevariationen – cremig, herzhaft, einfach echt.
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="about">
         <div class="container reveal">
-          <h2>Willkommen bei Gill's Heimspiel</h2>
-          <p>
-            Gill's Heimspiel ist ein Ort fuer Familienabende, Teamfeiern und genussvolle Abende
-            mit Freunden.
-          </p>
+          <div class="welcome-copy">
+            <h2>Herzlich willkommen bei Gill’s Heimspiel!</h2>
+            <p>
+              Bei uns in Ober-Olm verbinden wir die Vielfalt der indischen Küche mit
+              herzlicher Gastfreundschaft. Unser Küchenchef lässt sich von den Rezepten und
+              Gewürzen verschiedener Regionen Indiens inspirieren. Wir kochen mit frischen
+              Zutaten und stimmen die Gewürze für jedes Gericht sorgfältig ab.
+            </p>
+            <p>
+              Von cremigem Butter Chicken Tandoori bis zum sehr scharfen Lamb Vindaloo ist
+              für jeden Geschmack etwas dabei. Zu unseren Heimspiel-Klassikern gehören
+              Burger vom Grill und Schnitzel mit Pommes frites und kleinem Beilagensalat.
+            </p>
+            <p><strong>Schön, dass Sie da sind!</strong> Ihr Team von Gill’s Heimspiel</p>
+          </div>
           <div class="grid about-grid">
             <div class="card">
-              <h3>Authentische Gewuerzkuche</h3>
+              <h3>Feiern und Veranstaltungen</h3>
               <p>
-                Von mild bis feurig: Unsere Gerichte werden frisch zubereitet, mit hausgemachten
-                Masalas und traditionellen Rezepten.
+                Wir richten Hochzeiten, Geburtstage, Teamfeiern und Tagungen aus.
+                Auch für den Trauerkaffee nach einer Beerdigung sind wir für Sie da.
               </p>
             </div>
             <div class="card">
-              <h3>Fuer das ganze Team</h3>
+              <h3>Catering und Abholung</h3>
               <p>
-                Ob Spieltag, Feier oder Dinner zu zweit – wir servieren indische Klassiker in
-                entspannter Vereinsatmosphaere.
+                Wir bieten Catering und Buffets für Ihre Veranstaltung an.
+                Unsere Gerichte können Sie auch zum Mitnehmen bestellen.
               </p>
             </div>
-            <div class="card">
-              <h3>Veggie & Vegan</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="signature">
+        <div class="container reveal">
+          <h2>Aus unserer Speisekarte</h2>
+          <div class="signature-grid">
+            <div class="card signature-card">
+              <img src="5334565582152005926.jpg" alt="Tandoori-Platte" />
+              <h3>Mix Tandoori Platte</h3>
               <p>
-                Viele vegetarische und vegane Optionen mit viel Aroma, frischen Kraeutern und
-                saisonalem Gemuese.
+                Hähnchen, Lamm, Riesengarnelen und Lachsfilet aus dem Tandoor-Ofen,
+                serviert mit Basmati-Reis und Currysoße.
               </p>
             </div>
-            <div class="card">
-              <h3>Take-away & Catering</h3>
+            <div class="card signature-card">
+              <img src="5334565582152005927.jpg" alt="Biryani" />
+              <h3>Murgh Biryani</h3>
               <p>
-                Wir kochen auch fuer Events. Sprecht uns an fuer Buffets, Catering oder Abholung.
+                Hähnchenbrustfilet und Basmati-Reis, angebraten mit aromatischen Gewürzen,
+                Rosinen, Mandeln und Cashewnüssen.
+              </p>
+            </div>
+            <div class="card signature-card">
+              <img src="5334565582152005928.jpg" alt="Vegetarisches Curry" />
+              <h3>Vegetarisch und vegan</h3>
+              <p>
+                Palak Paneer mit gehacktem Spinat und hausgemachtem Paneer oder ein
+                Sabji Biryani mit Gemüse, Basmati-Reis und aromatischen Gewürzen.
               </p>
             </div>
           </div>
@@ -923,32 +814,16 @@
 
       <section class="section" id="menu">
         <div class="container reveal">
-          <h2>Speisekarte</h2>
-          <p>Klicke auf die Speisekarte, um sie gross zu sehen oder lade die PDF herunter.</p>
+          <h2>Speisen &amp; Getränke</h2>
           <div class="menu-panel">
-            <button class="menu-thumb" type="button" data-modal-pdf="Gill´s Heimspiel Speisekarte_1.pdf">
-              <div class="menu-thumb__frame">
-                <object data="Gill´s Heimspiel Speisekarte_1.pdf#page=1&zoom=page-width" type="application/pdf">
-                  <span class="menu-placeholder">PDF Vorschau nicht verfuegbar</span>
-                </object>
-              </div>
-              <span>Speisekarte (PDF)</span>
-            </button>
-            <div class="menu-preview">
-              <object data="Gill´s Heimspiel Speisekarte_1.pdf" type="application/pdf">
-                <p>
-                  PDF kann nicht angezeigt werden.
-                  <a href="Gill´s Heimspiel Speisekarte_1.pdf" target="_blank" rel="noopener">PDF oeffnen</a>.
-                </p>
-              </object>
-            </div>
-          </div>
-          <div class="menu-note">
-            <strong>Hinweis:</strong> Frag gerne nach Schaerfegrad, Allergenen oder Tagesangeboten.
-          </div>
-          <div class="cta-row" style="margin-top: 16px;">
-            <a class="btn light" href="Gill´s Heimspiel Speisekarte_1.pdf" target="_blank" rel="noopener">PDF oeffnen</a>
-            <a class="btn primary" href="Gill´s Heimspiel Speisekarte_1.pdf" download>PDF herunterladen</a>
+            <section class="card menu-card" id="speisekarte" aria-labelledby="speisekarte-titel">
+              <h3 id="speisekarte-titel">Speisekarte</h3>
+              <a class="btn primary menu-open" href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte öffnen</a>
+            </section>
+            <section class="card menu-card" id="getraenkekarte" aria-labelledby="getraenkekarte-titel">
+              <h3 id="getraenkekarte-titel">Getränkekarte</h3>
+              <a class="btn primary menu-open" href="Gills_Heimspiel_Getraenkekarte_v7.pdf">Getränkekarte öffnen</a>
+            </section>
           </div>
         </div>
       </section>
@@ -999,7 +874,7 @@
               </ul>
               <div class="cta-row" style="margin-top: 18px;">
                 <a class="btn primary" href="tel:+4961369292042">Jetzt anrufen</a>
-                <a class="btn light" href="#menu">Speisekarte ansehen</a>
+                <a class="btn light" href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte öffnen</a>
               </div>
             </div>
           </div>
@@ -1065,13 +940,6 @@
         <p><a href="datenschutz.html">Datenschutz</a> · <a href="impressum.html">Impressum</a></p>
       </div>
     </footer>
-
-    <div class="modal" id="menuModal" aria-hidden="true">
-      <div class="modal-content">
-        <button class="modal-close" type="button" id="menuModalClose">Schliessen</button>
-        <iframe src="" title="Speisekarte PDF" id="menuModalFrame"></iframe>
-      </div>
-    </div>
 
     <script>
       const navToggle = document.getElementById("navToggle");
@@ -1200,31 +1068,6 @@
 
       setGalleryIndex(0);
       startGalleryAuto();
-
-      const menuModal = document.getElementById("menuModal");
-      const menuModalFrame = document.getElementById("menuModalFrame");
-      const menuModalClose = document.getElementById("menuModalClose");
-
-      document.querySelectorAll(".menu-thumb").forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-          menuModalFrame.src = thumb.getAttribute("data-modal-pdf");
-          menuModal.classList.add("open");
-          menuModal.setAttribute("aria-hidden", "false");
-        });
-      });
-
-      const closeMenuModal = () => {
-        menuModal.classList.remove("open");
-        menuModal.setAttribute("aria-hidden", "true");
-        menuModalFrame.src = "";
-      };
-
-      menuModalClose.addEventListener("click", closeMenuModal);
-      menuModal.addEventListener("click", (event) => {
-        if (event.target === menuModal) {
-          closeMenuModal();
-        }
-      });
     </script>
   </body>
 </html>
