@@ -16,15 +16,18 @@
     />
     <style>
       :root {
-        --bg: #fff7ec;
-        --bg-deep: #f4dfc6;
-        --ink: #1e1512;
-        --accent: #a23a1f;
-        --accent-soft: #d98241;
-        --muted: #6b5f57;
-        --card: #fffaf4;
-        --shadow: 0 20px 60px rgba(23, 16, 12, 0.18);
+        color-scheme: dark;
+        --bg: #19110e;
+        --bg-deep: #100b09;
+        --ink: #fff0db;
+        --accent: #efbb71;
+        --muted: #dbc4ac;
+        --card: #2b1c16;
+        --line: rgba(239, 187, 113, 0.24);
+        --shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
         --radius: 22px;
+        --header-height: 60px;
+        scroll-padding-top: calc(var(--header-height) + 16px);
       }
 
       * {
@@ -35,11 +38,9 @@
         margin: 0;
         font-family: "Space Grotesk", "Segoe UI", sans-serif;
         color: var(--ink);
-        background: radial-gradient(circle at 20% 0%, #fff3e2, transparent 48%),
-          radial-gradient(circle at 80% 15%, #fde3c8, transparent 52%),
-          linear-gradient(180deg, var(--bg) 0%, #fff 40%, var(--bg-deep) 100%);
+        background: radial-gradient(ellipse at 15% 0%, #422719 0%, transparent 55rem),
+          linear-gradient(160deg, var(--bg), var(--bg-deep));
         min-height: 100vh;
-        scroll-behavior: smooth;
       }
 
       img {
@@ -58,73 +59,57 @@
       }
 
       .site-header {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        inset: 0 0 auto;
         z-index: 10;
-        background: rgba(255, 246, 236, 0.95);
+        background: rgba(25, 16, 12, 0.82);
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(27, 21, 18, 0.08);
+        border-bottom: 1px solid var(--line);
       }
 
       .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 18px 0;
+        gap: 20px;
+        min-height: var(--header-height);
       }
 
       .brand {
         display: flex;
-        gap: 14px;
+        gap: 10px;
         align-items: center;
+        white-space: nowrap;
       }
 
       .brand img {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
         object-fit: cover;
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
       }
 
       .brand span {
-        font-family: "Cormorant Garamond", "Georgia", serif;
-        font-size: 1.6rem;
-        letter-spacing: 0.02em;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.45rem;
+        color: var(--accent);
       }
 
       .nav-links {
         display: flex;
-        gap: 24px;
-        font-size: 0.98rem;
-      }
-
-      .nav-cta {
-        margin-left: 18px;
-        display: flex;
         align-items: center;
-        gap: 10px;
+        gap: clamp(12px, 2vw, 28px);
+        font-size: 0.92rem;
+        font-weight: 400;
+        white-space: nowrap;
       }
 
       .nav-cta .btn {
-        padding: 10px 18px;
-        background: var(--accent);
-        color: #fff;
-        border-radius: 999px;
-        box-shadow: 0 10px 22px rgba(162, 58, 31, 0.35);
-        animation: pulseCall 2.2s infinite;
-      }
-
-      @keyframes pulseCall {
-        0%,
-        100% {
-          transform: translateY(0);
-          box-shadow: 0 10px 22px rgba(162, 58, 31, 0.35);
-        }
-        50% {
-          transform: translateY(-3px);
-          box-shadow: 0 16px 30px rgba(162, 58, 31, 0.55);
-        }
+        padding: 8px 14px;
+        border-color: var(--line);
+        color: var(--accent);
+        font-size: 0.86rem;
+        white-space: nowrap;
       }
 
       .nav-links a {
@@ -152,7 +137,10 @@
         display: none;
         background: none;
         border: 0;
+        min-width: 44px;
+        min-height: 44px;
         padding: 8px;
+        cursor: pointer;
       }
 
       .nav-toggle span {
@@ -165,113 +153,66 @@
 
       .hero {
         position: relative;
-        padding: 110px 0 90px;
-        overflow: hidden;
+        display: grid;
+        align-items: center;
+        min-height: clamp(36rem, 54vw, 52rem);
+        padding: calc(var(--header-height) + 48px) 0 72px;
+        isolation: isolate;
+        background: var(--bg);
       }
 
       .hero::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          110deg,
-          rgba(10, 7, 6, 0.78) 0%,
-          rgba(10, 7, 6, 0.5) 45%,
-          rgba(10, 7, 6, 0.2) 100%
-        );
-        z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(22, 12, 8, 0.86), rgba(22, 12, 8, 0.45) 40%, transparent 76%),
+          linear-gradient(0deg, var(--bg), transparent 20%);
+        z-index: -1;
       }
 
       .hero-media {
         position: absolute;
         inset: 0;
-        overflow: hidden;
-      }
-
-      .hero-slide {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        transform: scale(1.05);
-        animation: heroSlide 18s infinite;
-      }
-
-      .hero-slide:nth-child(1) {
-        animation-delay: 0s;
-        background-image: url("Bild1.jpeg");
-      }
-
-      .hero-slide:nth-child(2) {
-        animation-delay: 6s;
-        background-image: url("Bild2.jpg");
-      }
-
-      .hero-slide:nth-child(3) {
-        animation-delay: 12s;
-        background-image: url("Bild3.jpg");
-      }
-
-      @keyframes heroSlide {
-        0% {
-          opacity: 0;
-          transform: scale(1.08);
-        }
-        8% {
-          opacity: 1;
-        }
-        33% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        41% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.08);
-        }
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: -2;
       }
 
       .hero-content {
-        position: relative;
-        z-index: 2;
-        color: #fff;
         display: grid;
-        gap: 12px;
-        max-width: 520px;
-        padding: 18px 20px;
-        border-radius: 20px;
-        background: rgba(12, 10, 9, 0.56);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur(6px);
+        justify-items: start;
+        gap: 14px;
       }
 
       .hero h1 {
-        font-family: "Cormorant Garamond", "Georgia", serif;
-        font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(3.2rem, 7.2vw, 7rem);
+        line-height: 0.95;
         margin: 0;
-        color: #ffe5c8;
-        text-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        color: #ffe6bf;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
       }
 
       .hero p {
+        max-width: 34ch;
         margin: 0;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.95);
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        line-height: 1.55;
+        text-shadow: 0 2px 10px #100b09;
       }
 
       .hero-subtitle {
-        font-size: 1.05rem;
-        text-align: center;
+        font-size: clamp(1.15rem, 2.3vw, 1.65rem);
       }
 
       .hero-text {
-        font-size: 0.88rem;
-        margin-top: -4px;
+        font-size: 1rem;
+      }
+
+      .hero .cta-row {
+        margin-top: 6px;
       }
 
       .open-pill {
@@ -284,10 +225,6 @@
         background: rgba(255, 255, 255, 0.12);
         border: 1px solid rgba(255, 255, 255, 0.35);
         width: fit-content;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        z-index: 2;
       }
 
       .open-dot {
@@ -330,19 +267,20 @@
 
       .btn.primary {
         background: var(--accent);
-        color: #fff;
-        box-shadow: 0 12px 30px rgba(162, 58, 31, 0.4);
+        color: var(--bg-deep);
+        box-shadow: 0 8px 20px rgba(15, 8, 5, 0.26);
       }
 
       .btn.secondary {
-        border-color: rgba(255, 255, 255, 0.8);
-        color: #fff;
+        border-color: var(--accent);
+        background: rgba(25, 16, 12, 0.62);
+        color: var(--ink);
       }
 
       .btn.light {
-        background: #fff;
+        background: var(--bg);
         color: var(--accent);
-        border-color: rgba(162, 58, 31, 0.2);
+        border-color: var(--line);
       }
 
       .btn:hover,
@@ -373,6 +311,7 @@
 
       .card {
         background: var(--card);
+        border: 1px solid var(--line);
         padding: 18px;
         border-radius: var(--radius);
         box-shadow: var(--shadow);
@@ -462,7 +401,7 @@
         width: 10px;
         height: 10px;
         border-radius: 999px;
-        border: 1px solid rgba(27, 21, 18, 0.4);
+        border: 1px solid var(--accent);
         background: transparent;
         cursor: pointer;
         transition: transform 0.2s ease, background 0.2s ease;
@@ -482,8 +421,8 @@
       }
 
       .highlight-item {
-        background: rgba(255, 255, 255, 0.65);
-        border: 1px solid rgba(162, 58, 31, 0.15);
+        background: var(--card);
+        border: 1px solid var(--line);
         padding: 12px 14px;
         border-radius: 14px;
         font-size: 0.9rem;
@@ -496,7 +435,7 @@
         width: 14px;
         height: 14px;
         display: inline-block;
-        border: 1px solid rgba(27, 21, 18, 0.55);
+        border: 1px solid var(--accent);
         flex: 0 0 auto;
       }
 
@@ -546,7 +485,8 @@
       }
 
       .contact-card {
-        background: #fff;
+        background: var(--card);
+        border: 1px solid var(--line);
         border-radius: var(--radius);
         padding: 28px;
         box-shadow: var(--shadow);
@@ -591,24 +531,31 @@
         .gallery-slide {
           height: 260px;
         }
-      }
 
-      @media (max-width: 900px) {
         .nav-links {
           position: absolute;
           top: 100%;
           right: 4vw;
-          background: rgba(255, 255, 255, 0.96);
+          background: var(--card);
+          border: 1px solid var(--line);
           border-radius: 16px;
-          padding: 18px;
+          padding: 8px 16px;
           flex-direction: column;
-          gap: 12px;
+          align-items: stretch;
+          gap: 0;
           box-shadow: var(--shadow);
           display: none;
         }
 
         .nav-links.open {
           display: flex;
+        }
+
+        .nav-links a {
+          display: flex;
+          align-items: center;
+          min-height: 44px;
+          padding-bottom: 0;
         }
 
         .nav-toggle {
@@ -618,42 +565,21 @@
         .nav-cta {
           display: none;
         }
-
-        .open-pill {
-          top: 10px;
-          bottom: auto;
-          right: 10px;
-        }
-
-        .open-note {
-          font-size: 0.64rem;
-        }
       }
 
       @media (max-width: 700px) {
-        .nav {
-          padding: 14px 0;
-        }
-
-        .brand span {
-          font-size: 1.3rem;
-        }
-
         .hero {
-          padding: 80px 0 70px;
+          align-items: end;
+          min-height: clamp(36rem, 88svh, 44rem);
+          padding: calc(var(--header-height) + 32px) 0 36px;
         }
 
-        .hero-content {
-          max-width: 100%;
-          padding: 16px 16px;
+        .hero-media {
+          object-position: 48% center;
         }
 
-        .hero h1 {
-          font-size: 2.1rem;
-        }
-
-        .hero p {
-          font-size: 0.9rem;
+        .hero::before {
+          background: linear-gradient(0deg, var(--bg), rgba(22, 12, 8, 0.8) 32%, transparent 78%);
         }
 
         .cta-row {
@@ -706,7 +632,7 @@
           <img src="logo_1.jpg" alt="Gill's Heimspiel Logo" />
           <span>Gill's Heimspiel</span>
         </a>
-        <nav class="nav-links" id="navLinks">
+        <nav class="nav-links" id="navLinks" aria-label="Hauptnavigation">
           <a href="#about">Über uns</a>
           <a href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte</a>
           <a href="Gills_Heimspiel_Getraenkekarte_v7.pdf">Getränkekarte</a>
@@ -716,7 +642,7 @@
         <div class="nav-cta">
           <a class="btn" href="tel:+4961369292042">Jetzt reservieren</a>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Menue oeffnen">
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü" aria-controls="navLinks" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -724,17 +650,14 @@
 
     <main>
       <section class="hero" id="hero">
-        <div class="hero-media" aria-hidden="true">
-          <div class="hero-slide"></div>
-          <div class="hero-slide"></div>
-          <div class="hero-slide"></div>
-        </div>
-        <div class="container hero-content reveal">
-          <h1>Gill’s Heimspiel</h1>
+        <img class="hero-media" src="Goldene Stunde auf der indischen Restaurantterrasse.png"
+          alt="" width="1781" height="883" fetchpriority="high" />
+        <div class="container hero-content">
           <div class="open-pill" id="openStatus">
             <span class="open-dot" id="openDot"></span>
             <span class="open-note" id="openNote">Status wird geladen</span>
           </div>
+          <h1>Gill’s Heimspiel</h1>
           <p class="hero-subtitle">Ein Stück Indien im Herzen von Ober-Olm.</p>
           <p class="hero-text">Indische Küche und Heimspiel-Klassiker. Authentisch. Frisch. Mit Leidenschaft.</p>
           <div class="cta-row">
@@ -946,11 +869,15 @@
       const navLinks = document.getElementById("navLinks");
 
       navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
+        const isOpen = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
       });
 
       document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => navLinks.classList.remove("open"));
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        });
       });
 
       const reveals = document.querySelectorAll(".reveal");
