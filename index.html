@@ -376,6 +376,9 @@
 
       .gallery-slider {
         position: relative;
+        max-width: 860px;
+        margin-inline: auto;
+        background: var(--bg-deep);
         overflow: hidden;
         border-radius: 24px;
         box-shadow: var(--shadow);
@@ -402,15 +405,18 @@
       }
 
       .gallery-slide {
-        min-width: 100%;
-        height: 360px;
+        flex: 0 0 100%;
+        aspect-ratio: 4 / 3;
         position: relative;
       }
 
       .gallery-slide img {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center var(--gallery-focus, 50%);
         display: block;
       }
 
@@ -418,24 +424,31 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        margin-top: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
       }
 
       .gallery-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        border: 1px solid var(--accent);
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 32px;
+        padding: 0;
+        border: 0;
         background: transparent;
         cursor: pointer;
-        transition: transform 0.2s ease, background 0.2s ease;
       }
 
-      .gallery-dot.active {
+      .gallery-dot::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+      }
+
+      .gallery-dot.active::before {
         background: var(--accent);
-        border-color: var(--accent);
-        transform: scale(1.1);
       }
 
       .highlights {
@@ -553,10 +566,6 @@
       }
 
       @media (max-width: 900px) {
-        .gallery-slide {
-          height: 260px;
-        }
-
         .nav-links {
           position: absolute;
           top: 100%;
@@ -635,10 +644,6 @@
         .menu-panel {
           grid-template-columns: 1fr;
           max-width: 290px;
-        }
-
-        .gallery-slide {
-          height: 220px;
         }
 
         .contact-card {
@@ -776,24 +781,52 @@
           <div class="gallery-slider" aria-roledescription="carousel">
             <div class="gallery-track" id="galleryTrack">
               <div class="gallery-slide">
-                <img src="5334565582152005929.jpg" alt="Indisches Restaurant Ambiente" />
+                <img src="bilder_gut/web/buffet.webp" alt="Festliches Buffet mit belegten Häppchen und Spießen" loading="lazy" decoding="async" />
               </div>
               <div class="gallery-slide">
-                <img src="5334565582152005930.jpg" alt="Gewuerze und indische Kueche" />
+                <img src="bilder_gut/web/burger.webp" alt="Burger mit Käse, Salat und Pommes frites" loading="lazy" decoding="async" />
               </div>
               <div class="gallery-slide">
-                <img src="5334565582152005931.jpg" alt="Curry Gericht" />
+                <img src="bilder_gut/web/salatteller.webp" alt="Gericht auf frischem Salat mit roten Zwiebeln" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide" style="--gallery-focus: 36%">
+                <img src="bilder_gut/web/blumen-am-buffet.webp" alt="Blumenstrauß und Grissini am Buffet" loading="lazy" decoding="async" />
               </div>
               <div class="gallery-slide">
-                <img src="Bild1.jpeg" alt="Tandoor und Restaurant" />
+                <img src="bilder_gut/web/fingerfood.webp" alt="Belegte Häppchen mit Lachs, Radieschen und Salat" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide" style="--gallery-focus: 47%">
+                <img src="bilder_gut/web/gedeckter-tisch.webp" alt="Festlich gedeckter Tisch von oben" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide">
+                <img src="bilder_gut/web/salatbuffet.webp" alt="Salate und Beilagen in Schüsseln auf dem Buffet" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide">
+                <img src="bilder_gut/web/gastraum-buffet.webp" alt="Buffet vor der Theke im Gastraum" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide">
+                <img src="bilder_gut/web/salat.webp" alt="Bunter Salat mit Karotten und Zwiebeln" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide" style="--gallery-focus: 60%">
+                <img src="bilder_gut/web/haeppchen.webp" alt="Auf zwei Ebenen angerichtete Fingerfood-Häppchen" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-slide" style="--gallery-focus: 68%">
+                <img src="bilder_gut/web/festtafel.webp" alt="Buffet mit Brot, Salaten und festlicher Dekoration" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
           <div class="gallery-controls" id="galleryDots" aria-label="Galerie Navigation">
-            <button class="gallery-dot active" type="button" aria-label="Bild 1"></button>
-            <button class="gallery-dot" type="button" aria-label="Bild 2"></button>
-            <button class="gallery-dot" type="button" aria-label="Bild 3"></button>
-            <button class="gallery-dot" type="button" aria-label="Bild 4"></button>
+            <button class="gallery-dot active" type="button" aria-label="Bild 1 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 2 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 3 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 4 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 5 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 6 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 7 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 8 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 9 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 10 anzeigen"></button>
+            <button class="gallery-dot" type="button" aria-label="Bild 11 anzeigen"></button>
           </div>
         </div>
       </section>
