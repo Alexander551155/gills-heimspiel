@@ -381,6 +381,21 @@
         box-shadow: var(--shadow);
       }
 
+      .buffet-preview {
+        text-align: center;
+      }
+
+      .buffet-preview video {
+        display: block;
+        width: min(100%, 360px);
+        height: auto;
+        margin-inline: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--bg-deep);
+        box-shadow: var(--shadow);
+      }
+
       .gallery-track {
         display: flex;
         transition: transform 0.6s ease;
@@ -685,6 +700,8 @@
             <p>
               In Ober-Olm servieren wir frische indische Küche mit Currys, Tandoori und Biryanis.
               Dazu gibt es Heimspiel-Klassiker wie Burger und Schnitzel.
+              Im Sommer genießen Sie auf unserer Terrasse leckere Speisen und kühle Getränke.
+              Am Wochenende zeigen wir Fußball live.
             </p>
           </div>
           <div class="grid about-grid">
@@ -695,10 +712,16 @@
               </p>
             </div>
             <div class="card">
-              <h3>Catering und Abholung</h3>
-              <p>
-                Catering und Buffets für Ihre Veranstaltung. Gerichte auch zum Mitnehmen.
-              </p>
+              <h3>Catering außer Haus</h3>
+              <p>Catering und Buffets für Feiern jeder Art, auch bei Ihnen vor Ort.</p>
+            </div>
+            <div class="card">
+              <h3>Lieferung</h3>
+              <p>Wir liefern unsere Gerichte zu Ihnen nach Hause.</p>
+            </div>
+            <div class="card">
+              <h3>Abholung</h3>
+              <p>Bestellen Sie vor und holen Sie Ihre Gerichte bei uns ab.</p>
             </div>
           </div>
         </div>
@@ -772,6 +795,15 @@
             <button class="gallery-dot" type="button" aria-label="Bild 3"></button>
             <button class="gallery-dot" type="button" aria-label="Bild 4"></button>
           </div>
+        </div>
+      </section>
+
+      <section class="section buffet-preview" id="buffet" aria-labelledby="buffet-title">
+        <div class="container">
+          <h2 id="buffet-title">Ein Blick auf unser Buffet</h2>
+          <video width="464" height="848" poster="restaurant-preview.webp"
+            data-src="restaurant-preview.mp4" preload="none" autoplay muted loop playsinline controls
+            aria-labelledby="buffet-title"></video>
         </div>
       </section>
 
@@ -888,6 +920,20 @@
       );
 
       reveals.forEach((el) => observer.observe(el));
+
+      const buffetVideo = document.querySelector(".buffet-preview video");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        buffetVideo.autoplay = false;
+      }
+
+      const buffetObserver = new IntersectionObserver(([entry], observer) => {
+        if (entry.isIntersecting) {
+          buffetVideo.src = buffetVideo.dataset.src;
+          observer.disconnect();
+        }
+      }, { rootMargin: "120px 0px" });
+      buffetObserver.observe(buffetVideo);
+
 
       document.getElementById("year").textContent = new Date().getFullYear();
 
