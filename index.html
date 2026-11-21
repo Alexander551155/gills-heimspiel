@@ -211,6 +211,10 @@
         font-size: 1rem;
       }
 
+      .hero [hidden] {
+        display: none;
+      }
+
       .hero .cta-row {
         margin-top: 6px;
       }
@@ -653,13 +657,13 @@
         <img class="hero-media" src="Goldene Stunde auf der indischen Restaurantterrasse.png"
           alt="" width="1781" height="883" fetchpriority="high" />
         <div class="container hero-content">
-          <div class="open-pill" id="openStatus">
+          <div class="open-pill" id="openStatus" hidden>
             <span class="open-dot" id="openDot"></span>
             <span class="open-note" id="openNote">Status wird geladen</span>
           </div>
-          <h1>Gill’s Heimspiel</h1>
-          <p class="hero-subtitle">Ein Stück Indien im Herzen von Ober-Olm.</p>
-          <p class="hero-text">Indische Küche und Heimspiel-Klassiker. Authentisch. Frisch. Mit Leidenschaft.</p>
+          <h1 hidden>Gill’s Heimspiel</h1>
+          <p hidden class="hero-subtitle">Ein Stück Indien im Herzen von Ober-Olm.</p>
+          <p hidden class="hero-text">Indische Küche und Heimspiel-Klassiker. Authentisch. Frisch. Mit Leidenschaft.</p>
           <div class="cta-row">
             <a class="btn primary" href="Speisekarte_GILLsHeimspiel_2026_v8.pdf">Speisekarte öffnen</a>
             <a class="btn secondary" href="tel:+4961369292042">Jetzt reservieren</a>
