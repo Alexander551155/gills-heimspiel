@@ -26,7 +26,7 @@
         --line: rgba(239, 187, 113, 0.24);
         --shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
         --radius: 22px;
-        --header-height: 60px;
+        --header-height: 50px;
         scroll-padding-top: calc(var(--header-height) + 16px);
       }
 
@@ -62,9 +62,10 @@
         position: fixed;
         inset: 0 0 auto;
         z-index: 10;
-        background: rgba(25, 16, 12, 0.82);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--line);
+        background: rgba(25, 16, 12, 0.18);
+        backdrop-filter: blur(3px);
+        border-bottom: 1px solid rgba(239, 187, 113, 0.1);
+        text-shadow: 0 1px 4px #100b09, 0 2px 12px #100b09;
       }
 
       .nav {
@@ -574,16 +575,16 @@
       @media (max-width: 700px) {
         .hero {
           align-items: end;
-          min-height: clamp(36rem, 88svh, 44rem);
+          min-height: 100svh;
           padding: calc(var(--header-height) + 32px) 0 36px;
         }
 
         .hero-media {
-          object-position: 48% center;
+          object-position: 81% center;
         }
 
         .hero::before {
-          background: linear-gradient(0deg, var(--bg), rgba(22, 12, 8, 0.8) 32%, transparent 78%);
+          background: linear-gradient(0deg, var(--bg), rgba(22, 12, 8, 0.72) 19%, transparent 48%);
         }
 
         .cta-row {
